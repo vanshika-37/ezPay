@@ -11,16 +11,17 @@ import com.ezPay.service.SupportService;
 
 import java.util.List;
 
-public class SupportControllerTest {
+public class SupportControllerTest1 {
 
     private SupportDAO supportDAO;
+    private SupportService supportService;
     private SupportController supportController;
-    private int userId;
 
     @Before
     public void setUp() {
-    	this.userId = 1;
-        supportController = new SupportController(userId);
+        supportDAO = new SupportDAO();
+        supportService = new SupportService(supportDAO);
+        supportController = new SupportController(supportService);
     }
 
     @Test

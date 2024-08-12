@@ -1,5 +1,6 @@
 package com.ezPay.model;
 import com.ezPay.repo.*;
+import com.ezPay.service.UserInterfaceService;
 import com.ezPay.controller.*;
 
 
@@ -8,19 +9,19 @@ public class UserInterface{
 	private String deviceType;
 	private double deviceWidth;
 	private double deviceHeight;
-	private MainMenu mainMenu;
+	//private MainMenu mainMenu;
 	
 	public UserInterface(String deviceType, double deviceWidth, double deviceHeight){
 		this.deviceType = deviceType;
 		this.deviceWidth = deviceWidth;
 		this.deviceHeight = deviceHeight;
-	    this.mainMenu = new MainMenu();
+	    //this.mainMenu = new MainMenu();
 		
 	}
 	
-	public MainMenu getMainMenu() {  // main menu with services
-		return this.mainMenu;
-	}
+//	public MainMenu getMainMenu() {  // main menu with services
+//		return this.mainMenu;
+//	}
 	public String getDeviceType() {  
 		return this.deviceType;
 	}

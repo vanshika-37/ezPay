@@ -9,8 +9,8 @@ import com.ezPay.repo.SupportDAO;
 public class SupportService {
     private SupportDAO supportDAO;
 
-    public SupportService(SupportDAO supportDAO) {
-        this.supportDAO = supportDAO;
+    public SupportService() {
+        this.supportDAO = new SupportDAO();
     }
 
     public void createTicket(int userId, String issueDescription) {

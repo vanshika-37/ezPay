@@ -1,46 +1,60 @@
 package com.ezPay.service;
-
-import com.ezPay.service.*;
-import com.ezPay.repo.*;
-import com.ezPay.controller.*;
-import com.ezPay.model.*;
-
-public class UserInterfaceService {
+import com.ezPay.controller.SupportController;
+import com.ezPay.model.UserInterface;
+public class UserInterfaceService{
+	@SuppressWarnings("unused")
 	private UserInterface UI ;
-    private MainMenu mainMenu ;
-    private SupportDAO supportDAO = new SupportDAO();
-    private SupportService supportService = new SupportService(supportDAO);
-    private SupportController supportController = new SupportController(supportService);
-    
-    
-    public UserInterfaceService(String deviceType, double deviceWidth, double deviceHeight){
+	private int userId;
+    private SupportController supportController;
+	
+	public UserInterfaceService(String deviceType, double deviceWidth, double deviceHeight){
     	UI = new UserInterface(deviceType ,deviceWidth,  deviceHeight);
-    	mainMenu = UI.getMainMenu();
     }
-    public String getMenuService() {   //getting menu screen
-    	return mainMenu.displayMainMenu();
-    }
-    
-    public String selectOptionService(int option) {  // services acc to user input
-        switch (option) {
-            case 1:
-                return mainMenu.goToProfile();
-               
-            case 2:
-                return mainMenu.goToCheckBalance();
-               
-            case 3:
-                return mainMenu.goToPayment();
-               
-            case 4:
-                 mainMenu.goToHelp(supportDAO, supportService, supportController);
-                 return "Support Ticket";
-                
-                
-            case 5:
-                return "Exiting app";
-            default:
-                return "Invalid option selected";
-        }
-    }
+	
+	public String registeredUserId(int userId) {
+		this.userId = userId;
+		return "User successfully logged in!";
+	}
+	
+	public String goToProfile() {   // returning profile page
+		return "Navigating user " + userId + " to Profiles";
+	}
+	
+	public String goToCheckBalance() {   // returning balance page
+		return "Navigating user " + userId + " to Balance";
+	}
+
+	
+	public String goToPayment() {        // returning payment page
+		return "Navigating user " + userId + " to Payment";
+	}
+	
+	public void goToHelp() {
+		if(supportController == null) supportController = new SupportController(userId);
+		supportController.showSupportMenu();
+		return;
+		
+	}
+	
+	public String exitApplication() {
+		return "Logging out user " + userId +"....\n"
+				+ "Logged out succesfully!\n";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
