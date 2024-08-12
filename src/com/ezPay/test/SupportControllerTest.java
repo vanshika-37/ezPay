@@ -1,13 +1,13 @@
-package com.ezPay.ticketing.test;
+package com.ezPay.test;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.ezPay.ticketing.controller.SupportController;
-import com.ezPay.ticketing.model.SupportTicket;
-import com.ezPay.ticketing.repo.SupportDAO;
-import com.ezPay.ticketing.service.SupportService;
+import com.ezPay.controller.SupportController;
+import com.ezPay.model.SupportTicket;
+import com.ezPay.repo.SupportDAO;
+import com.ezPay.service.SupportService;
 
 import java.util.List;
 

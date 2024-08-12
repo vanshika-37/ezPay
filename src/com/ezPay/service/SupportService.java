@@ -1,10 +1,10 @@
-package com.ezPay.ticketing.service;
+package com.ezPay.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.ezPay.ticketing.model.SupportTicket;
-import com.ezPay.ticketing.repo.SupportDAO;
+import com.ezPay.model.SupportTicket;
+import com.ezPay.repo.SupportDAO;
 
 public class SupportService {
     private SupportDAO supportDAO;

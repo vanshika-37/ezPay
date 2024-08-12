@@ -1,10 +1,10 @@
-package com.ezPay.ticketing.repo;
+package com.ezPay.repo;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.ezPay.ticketing.model.SupportTicket;
+import com.ezPay.model.SupportTicket;
 
 public class SupportDAO {
     private List<SupportTicket> tickets = new ArrayList<>();

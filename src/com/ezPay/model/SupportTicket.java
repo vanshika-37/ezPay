@@ -1,4 +1,4 @@
-package com.ezPay.ticketing.model;
+package com.ezPay.model;
 
 import java.util.Date;
 

@@ -1,9 +1,10 @@
-package com.ezPay.ticketing.controller;
+package com.ezPay.controller;
 
 import java.util.List;
+import java.util.Scanner;
 
-import com.ezPay.ticketing.model.SupportTicket;
-import com.ezPay.ticketing.service.SupportService;
+import com.ezPay.model.SupportTicket;
+import com.ezPay.service.SupportService;
 
 public class SupportController {
     private SupportService supportService;
@@ -12,7 +13,14 @@ public class SupportController {
         this.supportService = supportService;
     }
 
-    public void createTicket(int userId, String issueDescription) {
+    public void createTicket() {
+    	Scanner sc = new Scanner(System.in);
+    	System.out.println("Please mention your user ID");
+		int userId = sc.nextInt(); 
+		sc.nextLine();
+		System.out.println("Please mention your user issue");
+		String issueDescription = sc.nextLine();
+		sc.close();
         supportService.createTicket(userId, issueDescription);
         System.out.println("Support ticket created successfully.");
     }
