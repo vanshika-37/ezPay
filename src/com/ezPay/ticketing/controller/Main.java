@@ -1,7 +1,7 @@
-package com.ezp.Ticketing.Controller;
+package com.ezPay.ticketing.controller;
 
-import com.ezp.Ticketing.Repo.SupportDAO;
-import com.ezp.Ticketing.Service.SupportService;
+import com.ezPay.ticketing.repo.SupportDAO;
+import com.ezPay.ticketing.service.SupportService;
 
 public class Main {
     public static void main(String[] args) {

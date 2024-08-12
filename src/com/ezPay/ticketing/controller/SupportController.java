@@ -1,9 +1,9 @@
-package com.ezp.Ticketing.Controller;
+package com.ezPay.ticketing.controller;
 
 import java.util.List;
 
-import com.ezp.Ticketing.Model.SupportTicket;
-import com.ezp.Ticketing.Service.SupportService;
+import com.ezPay.ticketing.model.SupportTicket;
+import com.ezPay.ticketing.service.SupportService;
 
 public class SupportController {
     private SupportService supportService;
@@ -38,4 +38,3 @@ public class SupportController {
         System.out.println("Ticket ID " + ticketId + " has been resolved.");
     }
 }
-

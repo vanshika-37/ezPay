@@ -1,4 +1,5 @@
-package com.ezp.Ticketing.Model;
+package com.ezPay.ticketing.model;
+
 import java.util.Date;
 
 public class SupportTicket {
@@ -9,7 +10,6 @@ public class SupportTicket {
     private Date createdDate;
     private Date resolvedDate;
 
-    // Constructors, getters, and setters
     public SupportTicket(int ticketId, int userId, String issueDescription, String status, Date createdDate, Date resolvedDate) {
         this.ticketId = ticketId;
         this.userId = userId;
@@ -26,7 +26,6 @@ public class SupportTicket {
         this.createdDate = createdDate;
     }
 
-    // Getters and Setters
     public int getTicketId() { return ticketId; }
     public void setTicketId(int ticketId) { this.ticketId = ticketId; }
 

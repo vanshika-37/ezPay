@@ -1,17 +1,16 @@
-package com.ezp.Ticketing.Repo;
+package com.ezPay.ticketing.repo;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.ezp.Ticketing.Model.SupportTicket;
+import com.ezPay.ticketing.model.SupportTicket;
 
 public class SupportDAO {
     private List<SupportTicket> tickets = new ArrayList<>();
     private int ticketCounter = 3;
 
     public SupportDAO() {
-        // Adding some hardcoded values
         tickets.add(new SupportTicket(1, 1, "Issue with UPI payment", "OPEN", new Date(), null));
         tickets.add(new SupportTicket(2, 2, "Bank transfer failed", "RESOLVED", new Date(), new Date()));
         tickets.add(new SupportTicket(3, 1, "Unable to login", "OPEN", new Date(), null));
@@ -44,4 +43,3 @@ public class SupportDAO {
         }
     }
 }
-
