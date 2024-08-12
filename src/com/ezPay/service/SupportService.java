@@ -12,13 +12,23 @@ public class SupportService {
     public SupportService() {
         this.supportDAO = new SupportDAO();
     }
+    
+    public SupportDAO getSupportDAO() {
+		return supportDAO;
+	}
 
+	public void setSupportDAO(SupportDAO supportDAO) {
+		this.supportDAO = supportDAO;
+	}
+	
     public void createTicket(int userId, String issueDescription) {
         SupportTicket ticket = new SupportTicket(userId, issueDescription, "OPEN", new Date());
         supportDAO.createSupportTicket(ticket);
     }
 
-    public List<SupportTicket> viewTickets(int userId) {
+    
+
+	public List<SupportTicket> viewTickets(int userId) {
         return supportDAO.getTicketsByUserId(userId);
     }
 

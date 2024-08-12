@@ -11,6 +11,22 @@ public class UserInterfaceService{
     	UI = new UserInterface(deviceType ,deviceWidth,  deviceHeight);
     }
 	
+	public UserInterface getUI() {
+		return UI;
+	}
+
+	public void setUI(UserInterface uI) {
+		UI = uI;
+	}
+
+	public SupportController getSupportController() {
+		return supportController;
+	}
+
+	public void setSupportController(SupportController supportController) {
+		this.supportController = supportController;
+	}
+
 	public String registeredUserId(int userId) {
 		this.userId = userId;
 		return "User successfully logged in!";
