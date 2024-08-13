@@ -11,7 +11,6 @@ public class SupportController {
     private int userId;
 
     public SupportController(int userId) {
-        //this.supportService = supportService;
     	supportService = new SupportService();
     	this.userId = userId;
     }
@@ -84,6 +83,6 @@ public class SupportController {
     	int ticketId = sc.nextInt();
         supportService.resolveTicket(ticketId);
         System.out.println("\t\tTicket ID " + ticketId + " has been resolved.");
-        //sc.close();
+        
     }
 }

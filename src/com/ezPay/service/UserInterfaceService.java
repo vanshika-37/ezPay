@@ -2,7 +2,7 @@ package com.ezPay.service;
 import com.ezPay.controller.SupportController;
 import com.ezPay.model.UserInterface;
 public class UserInterfaceService{
-	@SuppressWarnings("unused")
+	
 	private UserInterface UI ;
 	private int userId;
     private SupportController supportController;
@@ -27,16 +27,16 @@ public class UserInterfaceService{
 		this.supportController = supportController;
 	}
 
-	public String registeredUserId(int userId) {
+	public String registeredUserId(int userId) {  
 		this.userId = userId;
 		return "User successfully logged in!";
 	}
 	
-	public String goToProfile() {   // returning profile page
+	public String goToProfile() {   // navigating user to profile page
 		return "Navigating user " + userId + " to Profiles";
 	}
 	
-	public String goToCheckBalance() {   // returning balance page
+	public String goToCheckBalance() {   // navigating user to balance page
 		return "Navigating user " + userId + " to Balance";
 	}
 

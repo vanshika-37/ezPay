@@ -9,7 +9,7 @@ public class UserInterfaceController {
 
         System.out.println("Select Device \n 1. smartphone \n 2. tablet \n 3. desktop");
         int deviceSelection = scanner.nextInt();
-        double deviceHeight;
+        double deviceHeight;   // values of screen sizes in inches
         double deviceWidth;
         String deviceType = "";
         switch (deviceSelection) {
