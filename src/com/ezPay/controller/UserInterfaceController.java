@@ -72,7 +72,7 @@ public class UserInterfaceController {
                     System.out.println(uiService.goToPayment());
                     break;
                 case 4:
-                	uiService.goToHelp();
+                	System.out.println(uiService.goToHelp());
                     break;
                 case 5:
                     System.out.println(uiService.exitApplication());

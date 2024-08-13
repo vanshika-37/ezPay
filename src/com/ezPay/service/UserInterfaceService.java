@@ -29,26 +29,26 @@ public class UserInterfaceService{
 
 	public String registeredUserId(int userId) {  
 		this.userId = userId;
-		return "User successfully logged in!";
+		return "User successfully logged in!\n";
 	}
 	
 	public String goToProfile() {   // navigating user to profile page
-		return "Navigating user " + userId + " to Profiles";
+		return "Navigating user " + userId + " to Profiles\n";
 	}
 	
 	public String goToCheckBalance() {   // navigating user to balance page
-		return "Navigating user " + userId + " to Balance";
+		return "Navigating user " + userId + " to Balance\n";
 	}
 
 	
 	public String goToPayment() {        // returning payment page
-		return "Navigating user " + userId + " to Payment";
+		return "Navigating user " + userId + " to Payment\n";
 	}
 	
-	public void goToHelp() {
+	public String goToHelp() {
 		if(supportController == null) supportController = new SupportController(userId);
 		supportController.showSupportMenu();
-		return;
+		return "Navigating to dashboard from Help\n";
 		
 	}
 	
