@@ -21,7 +21,7 @@ public class SupportService {
 		this.supportDAO = supportDAO;
 	}
 	
-    public void createTicket(int userId, String issueDescription) {
+    public void createTicket(int userId, String issueDescription) {  //creating ticket with user ID and issue Description
         SupportTicket ticket = new SupportTicket(userId, issueDescription, "OPEN", new Date());
         supportDAO.createSupportTicket(ticket);
     }
