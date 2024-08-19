@@ -18,6 +18,11 @@
      ```
      Replace `path/to/file` with the actual path to your `script.sql` file.
 
+     ```sql
+     commit;
+     ```
+     Commit the DML updates. 
+
 ### 3. Run the Java Application
 
    - Execute the `UserInterfaceController.java` file to start the application.
