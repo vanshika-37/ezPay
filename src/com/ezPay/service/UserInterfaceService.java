@@ -1,20 +1,68 @@
 package com.ezPay.service;
 
-import com.ezPay.controller.SupportController;
 import com.ezPay.model.UserInterface;
+import com.ezPay.util.DbConnection;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.ezPay.controller.SupportController;
 
 /**
  * Manages user interactions with the application's user interface.
  */
 public class UserInterfaceService {
 
-	private UserInterface UI; // User interface for the device
-	private int userId; // Current user's ID
 	private SupportController supportController; // Manages support actions
+	private UserInterface UI;
+	private int userId;
 
-	// Initializes with device details.
-	public UserInterfaceService(String deviceType, double deviceWidth, double deviceHeight) {
-		UI = new UserInterface(deviceType, deviceWidth, deviceHeight);
+	public UserInterfaceService(int deviceId) {
+		try {
+			UI = fetchDeviceFromDB(deviceId);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	private UserInterface fetchDeviceFromDB(int deviceId) throws ClassNotFoundException, SQLException, Exception {
+		// Establish database connection
+		Connection conn = DbConnection.GetConnection();
+
+		UserInterface userInterface = new UserInterface();
+
+		PreparedStatement preparedStatement = conn.prepareStatement(
+				"SELECT ID, DEVICE_TYPE, DEVICE_WIDTH, DEVICE_HEIGHT FROM DEVICE WHERE ID = ?");
+		preparedStatement.setInt(1, deviceId);
+
+		ResultSet resultSet = preparedStatement.executeQuery();
+
+		if (resultSet.next()) {
+			userInterface.setId(resultSet.getInt("id"));
+			userInterface.setDeviceType(resultSet.getString("device_type"));
+			userInterface.setDeviceWidth(resultSet.getDouble("device_width"));
+			userInterface.setDeviceHeight(resultSet.getDouble("device_height"));
+		}
+
+		resultSet.close();
+		preparedStatement.close();
+		conn.close();
+
+		return userInterface;
+	}
+
+	public UserInterfaceService(int id, String deviceType, double deviceWidth, double deviceHeight) {
+		UI = new UserInterface(id, deviceType, deviceWidth, deviceHeight);
 	}
 
 	// Gets the UserInterface object.

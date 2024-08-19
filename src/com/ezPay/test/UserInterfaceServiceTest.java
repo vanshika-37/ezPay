@@ -8,9 +8,9 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.ezPay.controller.SupportController;
 import com.ezPay.model.UserInterface;
 import com.ezPay.service.UserInterfaceService;
+import com.ezPay.controller.SupportController;
 
 public class UserInterfaceServiceTest {
 
@@ -19,7 +19,7 @@ public class UserInterfaceServiceTest {
     @Before
     public void setUp() {
         // Initialize UserInterfaceService with mock values
-        userInterfaceService = new UserInterfaceService("smartPhone", 7.5, 6);
+        userInterfaceService = new UserInterfaceService(1,"smartPhone", 7.5, 6.0);
         userInterfaceService.registeredUserId(1); // Register a user ID for testing
     }
 
@@ -87,7 +87,7 @@ public class UserInterfaceServiceTest {
     @Test
     public void testSetUI() {
         // Testing setter for UserInterface
-        UserInterface mockUI = new UserInterface("tablet", 8.0, 7.0);
+        UserInterface mockUI = new UserInterface(2, "tablet", 8.0, 7.0);
         userInterfaceService.setUI(mockUI);
         assertEquals("The UI should be updated to the mock UI", mockUI, userInterfaceService.getUI());
     }

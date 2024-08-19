@@ -7,41 +7,88 @@ import com.ezPay.model.SupportTicket;
 import com.ezPay.repo.SupportDAO;
 
 /**
- * Provides services for managing support tickets, including creating, viewing,
- * and resolving tickets.
+ * Service class for managing support tickets, including creation, viewing, and resolution.
+ * This class acts as an intermediary between the controller and the data access layer (DAO).
  */
 public class SupportService {
-	private SupportDAO supportDAO; // Data access object for support tickets
+	private SupportDAO supportDAO;
 
-	// Constructs a SupportService instance and initializes the SupportDAO.
+	/**
+	 * Default constructor initializing the SupportDAO instance.
+	 * This allows the service layer to interact with the data layer.
+	 */
 	public SupportService() {
 		this.supportDAO = new SupportDAO();
 	}
 
-	// Gets the SupportDAO instance used by this service.
+	/**
+	 * Retrieves the current SupportDAO instance.
+	 * This can be useful for cases where the DAO needs to be accessed or replaced.
+	 *
+	 * @return the current instance of SupportDAO
+	 */
 	public SupportDAO getSupportDAO() {
 		return supportDAO;
 	}
 
-	// Sets the SupportDAO instance used by this service.
+	/**
+	 * Sets a custom SupportDAO instance.
+	 * This method allows for dependency injection or replacement of the DAO instance.
+	 *
+	 * @param supportDAO the new SupportDAO instance to be used by this service
+	 */
 	public void setSupportDAO(SupportDAO supportDAO) {
 		this.supportDAO = supportDAO;
 	}
 
-	// Creates a new support ticket with the given user ID and issue description.
+	/**
+	 * Creates a new support ticket with the provided user ID and issue description.
+	 * The ticket is initialized with a status of "OPEN" and the current timestamp.
+	 *
+	 * @param userId the ID of the user creating the ticket
+	 * @param issueDescription a description of the issue to be reported
+	 */
 	public void createTicket(int userId, String issueDescription) {
-		SupportTicket ticket = new SupportTicket(userId, issueDescription, "OPEN", new Date()); // Create new ticket
-		supportDAO.createSupportTicket(ticket); // Save ticket using SupportDAO
+		try {
+			SupportTicket ticket = new SupportTicket(userId, issueDescription, "OPEN", new Date());
+			supportDAO.createSupportTicket(ticket);
+		} catch (Exception e) {
+			// Logs the exception to the console for debugging purposes
+			// In a production environment, consider logging this to a file or monitoring system
+			e.printStackTrace();
+		}
 	}
 
-	// Retrieves the list of support tickets for a specific user.
+	/**
+	 * Retrieves the list of support tickets associated with the specified user ID.
+	 * If an exception occurs, it logs the error and returns null.
+	 *
+	 * @param userId the ID of the user whose tickets are to be retrieved
+	 * @return a list of SupportTicket objects, or null if an error occurs
+	 */
 	public List<SupportTicket> viewTickets(int userId) {
-		return supportDAO.getTicketsByUserId(userId); // Fetch tickets from SupportDAO
+		try {
+			return supportDAO.getTicketsByUserId(userId);
+		} catch (Exception e) {
+			// Logs the exception and returns null to indicate a failure in retrieving the tickets
+			e.printStackTrace();
+			return null;
+		}
 	}
 
-	// Resolves the ticket with the specified ticket ID by updating its status to
-	// "RESOLVED".
+	/**
+	 * Resolves the support ticket with the given ticket ID by updating its status to "RESOLVED".
+	 * If an exception occurs, it logs the error.
+	 *
+	 * @param ticketId the ID of the ticket to be resolved
+	 */
 	public void resolveTicket(int ticketId) {
-		supportDAO.updateTicketStatus(ticketId, "RESOLVED"); // Update ticket status in SupportDAO
+		try {
+			supportDAO.updateTicketStatus(ticketId, "RESOLVED");
+		} catch (Exception e) {
+			// Logs the exception to the console for debugging purposes
+			// In a production environment, consider logging this to a file or monitoring system
+			e.printStackTrace();
+		}
 	}
 }
