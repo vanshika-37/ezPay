@@ -75,11 +75,11 @@ END;
 /
 
 -- Inserting data into the device table
-INSERT INTO device (device_type, device_width, device_height, user_id)
-VALUES ('smartPhone', 6.5, 5.0, 5678);
+INSERT INTO device (device_type, device_width, device_height)
+VALUES ('smartPhone', 6.5, 5.0);
 
-INSERT INTO device (device_type, device_width, device_height, user_id)
-VALUES ('tablet', 7, 8, 9001);
+INSERT INTO device (device_type, device_width, device_height)
+VALUES ('tablet', 7, 8);
 
 -- Inserting data into the support_ticket table
 INSERT INTO support_ticket (user_id, issue_description, status, created_date, resolved_date)
