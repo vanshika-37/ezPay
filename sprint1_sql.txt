@@ -1,0 +1,173 @@
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE device';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Optional: Consider logging the error
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP TABLE support_ticket';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Optional: Consider logging the error
+END;
+/
+
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE device_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Optional: Consider logging the error
+END;
+/
+
+BEGIN
+    EXECUTE IMMEDIATE 'DROP SEQUENCE support_ticket_seq';
+EXCEPTION
+    WHEN OTHERS THEN
+        NULL; -- Optional: Consider logging the error
+END;
+/
+
+-- Create tables
+CREATE TABLE "user" (
+    id NUMBER(10) NOT NULL,
+    user_access VARCHAR2(100) CHECK (user_access IN ('ADMIN', 'CUSTOMER')),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE device (
+    id NUMBER(10) NOT NULL,
+    device_type VARCHAR2(45) NOT NULL,
+    device_width NUMBER(10, 2) NOT NULL,
+    device_height NUMBER(10, 2) NOT NULL,
+    user_id NUMBER(10),
+    FOREIGN KEY (user_id) REFERENCES "user" (id),
+    PRIMARY KEY (id)
+);
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE device_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER device_seq_tr
+BEFORE INSERT ON device
+FOR EACH ROW
+BEGIN
+    IF :NEW.id IS NULL THEN
+        SELECT device_seq.NEXTVAL INTO :NEW.id FROM DUAL;
+    END IF;
+END;
+/
+
+CREATE TABLE support_ticket (
+    id NUMBER(10) NOT NULL,
+    issue_description VARCHAR2(300) NOT NULL,
+    ticket_status VARCHAR2(10) CHECK (ticket_status IN ('RESOLVED', 'OPEN')) NOT NULL,
+    created_date DATE,
+    resolved_date DATE,
+    user_id NUMBER(10) NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES "user" (id),
+    PRIMARY KEY (id)
+);
+
+-- Generate ID using sequence and trigger
+CREATE SEQUENCE support_ticket_seq START WITH 1 INCREMENT BY 1;
+
+CREATE OR REPLACE TRIGGER support_ticket_seq_tr
+BEFORE INSERT ON support_ticket
+FOR EACH ROW
+BEGIN
+    IF :NEW.id IS NULL THEN
+        SELECT support_ticket_seq.NEXTVAL INTO :NEW.id FROM DUAL;
+    END IF;
+END;
+/
+
+INSERT INTO
+    "user" (id, user_access)
+VALUES
+    (1234, 'ADMIN');
+
+INSERT INTO
+    "user" (id, user_access)
+VALUES
+    (5678, 'CUSTOMER');
+
+INSERT INTO
+    "user" (id, user_access)
+VALUES
+    (9001, 'CUSTOMER');
+
+INSERT INTO
+    device (
+        device_type,
+        device_width,
+        device_height,
+        user_id
+    )
+VALUES
+    ('smartPhone', 6.5, 5.0, 5678);
+
+INSERT INTO
+    device (
+        device_type,
+        device_width,
+        device_height,
+        user_id
+    )
+VALUES
+    ('tablet', 7, 8, 9001);
+
+INSERT INTO
+    support_ticket (
+        issue_description,
+        ticket_status,
+        created_date,
+        resolved_date,
+        user_id
+    )
+VALUES
+    (
+        'Issue with UPI payment',
+        'OPEN',
+        sysdate,
+        null,
+        5678
+    );
+
+INSERT INTO
+    support_ticket (
+        issue_description,
+        ticket_status,
+        created_date,
+        resolved_date,
+        user_id
+    )
+VALUES
+    (
+        'Bank transfer failed',
+        'RESOLVED',
+        sysdate,
+        sysdate + 5,
+        9001
+    );
+
+INSERT INTO
+    support_ticket (
+        issue_description,
+        ticket_status,
+        created_date,
+        resolved_date,
+        user_id
+    )
+VALUES
+    (
+        'Unable to login',
+        'OPEN',
+        sysdate,
+        sysdate + 5,
+        5678
+    );
