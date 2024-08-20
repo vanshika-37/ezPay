@@ -16,13 +16,21 @@ public class UserInterfaceServiceTest {
 
     private UserInterfaceService userInterfaceService;
 
+     /**
+     * Set up method that runs before each test. Initializes the UserInterfaceService 
+     * with mock values and registers a user ID for testing purposes.
+     */
     @Before
     public void setUp() {
         // Initialize UserInterfaceService with mock values
         userInterfaceService = new UserInterfaceService("smartPhone", 7.5, 6);
         userInterfaceService.registeredUserId(1); // Register a user ID for testing
     }
-
+    
+    /**
+     * Test the registeredUserId method to ensure it returns the correct success message 
+     * when a user is logged in.
+     */
     @Test
     public void testRegisteredUserId() {
         String expectedOutput = "User successfully logged in!";
@@ -30,6 +38,10 @@ public class UserInterfaceServiceTest {
         assertEquals("The output should match the registration success message", expectedOutput, actualOutput);
     }
 
+    /**
+     * Test the goToProfile method to verify that the correct navigation message 
+     * is returned when the user navigates to the profile.
+     */
     @Test
     public void testGoToProfile() {
         String expectedOutput = "Navigating user 1 to Profiles";
@@ -37,6 +49,10 @@ public class UserInterfaceServiceTest {
         assertEquals("The output should match for navigating to profile", expectedOutput, actualOutput);
     }
 
+    /**
+     * Test the goToCheckBalance method to ensure that the correct message is returned 
+     * when the user navigates to the balance checking screen.
+     */
     @Test
     public void testGoToCheckBalance() {
         String expectedOutput = "Navigating user 1 to Balance";
@@ -44,6 +60,10 @@ public class UserInterfaceServiceTest {
         assertEquals("The output should match for checking balance", expectedOutput, actualOutput);
     }
 
+    /**
+     * Test the goToPayment method to verify that the correct navigation message 
+     * is returned when the user navigates to the payment screen.
+     */
     @Test
     public void testGoToPayment() {
         String expectedOutput = "Navigating user 1 to Payment";
@@ -51,6 +71,9 @@ public class UserInterfaceServiceTest {
         assertEquals("The output should match for making payment", expectedOutput, actualOutput);
     }
 
+    /**
+     * Test the goToHelp method when SupportController is not set. 
+     */
     @Ignore
     @Test
     public void testGoToHelpWithNullSupportController() {
@@ -61,6 +84,9 @@ public class UserInterfaceServiceTest {
         assertNotNull("The support controller should be initialized when accessing help", supportController);
     }
 
+    /**
+     * Test the goToHelp method when SupportController is already set. 
+     */
     @Ignore
     @Test
     public void testGoToHelpWithExistingSupportController() {
@@ -71,6 +97,10 @@ public class UserInterfaceServiceTest {
         assertEquals("The support controller should match the existing instance", existingSupportController, userInterfaceService.getSupportController());
     }
 
+    /**
+     * Test the exitApplication method to verify that the correct messages 
+     * are returned when the user logs out and exits the application.
+     */
     @Test
     public void testExitApplication() {
         String expectedOutput = "Logging out user 1....\nLogged out succesfully!\n";
@@ -78,12 +108,20 @@ public class UserInterfaceServiceTest {
         assertEquals("The output should match for exiting the application", expectedOutput, actualOutput);
     }
 
+    /**
+     * Test the getUI method to ensure that the UserInterface instance is properly 
+     * initialized and returned by the UserInterfaceService.
+     */
     @Test
     public void testGetUI() {
         // Testing getter for UserInterface
         assertNotNull("The UI should be initialized", userInterfaceService.getUI());
     }
-
+    
+    /**
+     * Test the setUI method to verify that the UserInterface instance can be 
+     * successfully updated with a new instance.
+     */
     @Test
     public void testSetUI() {
         // Testing setter for UserInterface
@@ -92,6 +130,10 @@ public class UserInterfaceServiceTest {
         assertEquals("The UI should be updated to the mock UI", mockUI, userInterfaceService.getUI());
     }
     
+    /**
+     * Test the setSupportController method to ensure that the SupportController instance 
+     * can be successfully updated with a new instance.
+     */
     @Test
     public void testSetSupportController() {
         // Testing setter for SupportController
