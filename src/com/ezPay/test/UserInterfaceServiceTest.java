@@ -89,7 +89,6 @@ public class UserInterfaceServiceTest {
     public void testGoToPayment() {
         String expectedOutput = "Navigating user 1 to Payment\n";
         String actualOutput = userInterfaceService.goToPayment();
-        System.out.println(actualOutput+" "+ expectedOutput);
         assertEquals("The output should match for making payment", expectedOutput, actualOutput);
     }
 
