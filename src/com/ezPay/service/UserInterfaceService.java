@@ -1,6 +1,7 @@
 package com.ezPay.service;
 
 import com.ezPay.model.UserInterface;
+import com.ezPay.repo.DeviceDAO;
 import com.ezPay.util.DbConnection;
 
 import java.sql.Connection;
@@ -18,9 +19,11 @@ public class UserInterfaceService {
 	private SupportController supportController; // Manages support actions
 	private UserInterface UI;
 	private int userId;
+	private DeviceDAO deviceDAO;
 
-	public UserInterfaceService(int deviceId) {
+	public UserInterfaceService(int deviceId, DeviceDAO deviceDAO) {
 		try {
+			this.deviceDAO = deviceDAO;
 			UI = fetchDeviceFromDB(deviceId);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -36,16 +39,11 @@ public class UserInterfaceService {
 	}
 
 	private UserInterface fetchDeviceFromDB(int deviceId) throws ClassNotFoundException, SQLException, Exception {
-		// Establish database connection
-		Connection conn = DbConnection.GetConnection();
-
+	  
+	     
+		ResultSet resultSet = deviceDAO.getDevice(deviceId);
+		
 		UserInterface userInterface = new UserInterface();
-
-		PreparedStatement preparedStatement = conn.prepareStatement(
-				"SELECT ID, DEVICE_TYPE, DEVICE_WIDTH, DEVICE_HEIGHT FROM DEVICE WHERE ID = ?");
-		preparedStatement.setInt(1, deviceId);
-
-		ResultSet resultSet = preparedStatement.executeQuery();
 
 		if (resultSet.next()) {
 			userInterface.setId(resultSet.getInt("id"));
@@ -54,10 +52,7 @@ public class UserInterfaceService {
 			userInterface.setDeviceHeight(resultSet.getDouble("device_height"));
 		}
 
-		resultSet.close();
-		preparedStatement.close();
-		conn.close();
-
+	 
 		return userInterface;
 	}
 

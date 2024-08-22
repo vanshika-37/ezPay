@@ -80,6 +80,7 @@ VALUES ('smartPhone', 6.5, 5.0);
 
 INSERT INTO device (device_type, device_width, device_height)
 VALUES ('tablet', 7, 8);
+Commit;
 
 -- Inserting data into the support_ticket table
 INSERT INTO support_ticket (user_id, issue_description, status, created_date, resolved_date)
@@ -90,3 +91,4 @@ VALUES (9001, 'Bank transfer failed', 'RESOLVED', sysdate, sysdate + 5);
 
 INSERT INTO support_ticket (user_id, issue_description, status, created_date, resolved_date)
 VALUES (5678, 'Unable to login', 'OPEN', sysdate, sysdate + 5);
+Commit;

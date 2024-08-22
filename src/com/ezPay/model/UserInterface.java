@@ -52,4 +52,17 @@ public class UserInterface {
 	public void setDeviceHeight(double height) {
 		this.deviceHeight = height;
 	}
+	
+	@Override 
+	 public boolean equals(Object obj) { 
+		UserInterface UI =  (UserInterface) obj;
+		if(this.id ==UI.getId() && this.deviceType==UI.getDeviceType() && this.deviceHeight == UI.getDeviceHeight() && this.deviceWidth == UI.getDeviceWidth()) {
+			return true;
+		}
+		return false;
+		
+		
+		
+	}
 }
+

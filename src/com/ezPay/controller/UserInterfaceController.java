@@ -1,5 +1,6 @@
 package com.ezPay.controller;
 
+import com.ezPay.repo.DeviceDAO;
 import com.ezPay.service.UserInterfaceService;
 
 import java.util.Scanner;
@@ -18,7 +19,8 @@ public class UserInterfaceController {
 		int deviceId = scanner.nextInt();
 
 		// Initialize UserInterfaceService with the selected device ID
-		UserInterfaceService uiService = new UserInterfaceService(deviceId);
+		DeviceDAO deviceDAO = new DeviceDAO();
+		UserInterfaceService uiService = new UserInterfaceService(deviceId,deviceDAO);
 
 		// Fetch the UserInterface object to display the device type
 		String deviceType = uiService.getUI().getDeviceType();
