@@ -1,3 +1,8 @@
+/*
+ * @author Vaishnave
+ * @since 2024-08-19
+*/
+
 BEGIN
     EXECUTE IMMEDIATE 'DROP TABLE device';
 EXCEPTION
