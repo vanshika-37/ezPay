@@ -1,4 +1,4 @@
-package com.ezPay.test;
+package com.capstone.ezpay.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;

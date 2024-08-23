@@ -1,15 +1,14 @@
-package com.ezPay.service;
+package com.capstone.ezpay.service;
 
-import com.ezPay.model.UserInterface;
-import com.ezPay.repo.DeviceDAO;
-import com.ezPay.util.DbConnection;
+import com.capstone.ezpay.controller.SupportController;
+import com.capstone.ezpay.model.UserInterface;
+import com.capstone.ezpay.repo.DeviceDAO;
+import com.capstone.ezpay.util.DbConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.ezPay.controller.SupportController;
 
 /**
  * Manages user interactions with the application's user interface.

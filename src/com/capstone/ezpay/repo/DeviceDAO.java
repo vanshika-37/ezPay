@@ -1,16 +1,17 @@
-package com.ezPay.repo;
+package com.capstone.ezpay.repo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import com.ezPay.util.DbConnection;
+
+import com.capstone.ezpay.util.DbConnection;
 
 public class DeviceDAO {
 
 	
 	public ResultSet getDevice(int deviceId) throws SQLException, ClassNotFoundException {
-		Connection conn = DbConnection.GetConnection();
+		Connection conn = DbConnection.getConnection();
 
 		PreparedStatement preparedStatement = conn.prepareStatement(
 				"SELECT ID, DEVICE_TYPE, DEVICE_WIDTH, DEVICE_HEIGHT FROM DEVICE WHERE ID = ?");

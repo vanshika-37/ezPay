@@ -1,26 +1,37 @@
-package com.ezPay.controller;
+package com.capstone.ezpay.controller;
 
 import java.util.List;
 import java.util.Scanner;
 
-import com.ezPay.model.SupportTicket;
-import com.ezPay.service.SupportService;
+import com.capstone.ezpay.model.SupportTicket;
+import com.capstone.ezpay.service.SupportService;
 
 /**
- * Handles user support interactions, including ticket creation, viewing, and
- * resolution.
+ * @author vanshika
+ * @since 2024-08-19
+ * 
+ * Handles user support interactions, including ticket creation, viewing,
+ * and resolution.
  */
+
 public class SupportController {
 	private SupportService supportService; // Service for handling support tickets
 	private int userId; // ID of the user seeking support
 
-	// Initializes SupportController with a user ID.
+	/**
+	 * Initializes SupportController with a user ID.
+	 * 
+	 * @param userId The ID of the user for whom support is being managed.
+	 */
 	public SupportController(int userId) {
 		supportService = new SupportService();
 		this.userId = userId;
 	}
 
-	// Displays the support menu and handles user input.
+	/**
+	 * Displays the support menu and handles user input. This method loops until the
+	 * user chooses to exit.
+	 */
 	public void showSupportMenu() {
 		@SuppressWarnings("resource")
 		Scanner s = new Scanner(System.in);
@@ -50,7 +61,11 @@ public class SupportController {
 		}
 	}
 
-	// Prompts user to enter issue description and creates a support ticket.
+	/**
+	 * Prompts the user to enter an issue description and creates a support ticket.
+	 * This method encapsulates the logic of gathering the issue description and
+	 * delegating ticket creation to the SupportService.
+	 */
 	public void createTicket() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);
@@ -58,10 +73,12 @@ public class SupportController {
 		String issueDescription = sc.nextLine();
 		supportService.createTicket(userId, issueDescription);
 		System.out.println("\t\tSupport ticket created successfully.");
-		// sc.close(); // No need to close Scanner, it's managed elsewhere
 	}
 
-	// Displays all support tickets for the user.
+	/**
+	 * Displays all support tickets for the user. This method retrieves tickets from
+	 * the SupportService and formats them for display.
+	 */
 	public void viewTickets() {
 		System.out.println("\t\tHere is your ticket info.\n" + "\t\t--------------------------------------");
 		List<SupportTicket> tickets = supportService.viewTickets(userId);
@@ -75,11 +92,15 @@ public class SupportController {
 				System.out.println("\t\t--------------------------------------");
 			}
 		} else {
-			System.out.println("\t\tNo tickets found for the user."); // No tickets case
+			System.out.println("\t\tNo tickets found for the user."); // Handle No tickets case
 		}
 	}
 
-	// Prompts user to enter a ticket ID and resolves the selected ticket.
+	/**
+	 * Prompts the user to enter a ticket ID and resolves the selected ticket. This
+	 * method encapsulates the logic for ticket resolution, ensuring that the ticket
+	 * ID is valid and the resolution process is handled correctly.
+	 */
 	public void resolveTicket() {
 		@SuppressWarnings("resource")
 		Scanner sc = new Scanner(System.in);

@@ -1,4 +1,4 @@
-package com.ezPay.model;
+package com.capstone.ezpay.model;
 
 /**
  * Represents the user interface configuration for different devices.

@@ -1,8 +1,8 @@
-package com.ezPay.test;
+package com.capstone.ezpay.test;
 
-import com.ezPay.model.SupportTicket;
-import com.ezPay.repo.SupportDAO;
-import com.ezPay.service.SupportService;
+import com.capstone.ezpay.model.SupportTicket;
+import com.capstone.ezpay.repo.SupportDAO;
+import com.capstone.ezpay.service.SupportService;
 
 import org.junit.Before;
 import org.junit.Test;

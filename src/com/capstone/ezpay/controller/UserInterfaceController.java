@@ -1,7 +1,7 @@
-package com.ezPay.controller;
+package com.capstone.ezpay.controller;
 
-import com.ezPay.repo.DeviceDAO;
-import com.ezPay.service.UserInterfaceService;
+import com.capstone.ezpay.repo.DeviceDAO;
+import com.capstone.ezpay.service.UserInterfaceService;
 
 import java.util.Scanner;
 

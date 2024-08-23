@@ -1,14 +1,17 @@
-package com.ezPay.service;
+package com.capstone.ezpay.service;
 
 import java.util.Date;
 import java.util.List;
 
-import com.ezPay.model.SupportTicket;
-import com.ezPay.repo.SupportDAO;
+import com.capstone.ezpay.model.SupportTicket;
+import com.capstone.ezpay.repo.SupportDAO;
 
 /**
  * Service class for managing support tickets, including creation, viewing, and resolution.
  * This class acts as an intermediary between the controller and the data access layer (DAO).
+ * 
+ * @author vanshika
+ * @since 2024-08-19
  */
 public class SupportService {
 	private SupportDAO supportDAO;

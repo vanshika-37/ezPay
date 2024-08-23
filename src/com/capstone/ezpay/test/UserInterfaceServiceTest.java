@@ -1,4 +1,4 @@
-package com.ezPay.test;
+package com.capstone.ezpay.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -12,10 +12,10 @@ import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import com.ezPay.model.UserInterface;
-import com.ezPay.repo.DeviceDAO;
-import com.ezPay.service.UserInterfaceService;
-import com.ezPay.controller.SupportController;
+import com.capstone.ezpay.controller.SupportController;
+import com.capstone.ezpay.model.UserInterface;
+import com.capstone.ezpay.repo.DeviceDAO;
+import com.capstone.ezpay.service.UserInterfaceService;
 
 public class UserInterfaceServiceTest {
 
