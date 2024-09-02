@@ -1,9 +1,9 @@
 import Header from "./Header.js";
-export default function Help(){
+export default function Profile(){
     return (
         <>
         <Header/>
-        <h1>Help</h1>
+        <h1>Profile</h1>
         </>
     )
 }
