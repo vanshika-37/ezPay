@@ -1,53 +1,59 @@
 .header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #1d5ba6; /* Blue background */
-    padding: 0 20px;
-    height: 60px;
-  }
-  
-  .logo h1 {
-    color: white;
-    margin: 0;
-    font-size: 24px;
-    text-decoration: none;
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #1d5ba6;
+  padding: 0 1.2rem;
+  height: 3.75rem;
+  width: 100vw;
+  z-index: 1000;
+  margin-bottom: 2rem;
+}
 
-  
-  .nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  .nav ul li {
-    margin: 0 15px;
-  }
-  
-  .nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 16px;
-  }
-  
-  .nav ul li a:hover {
-    text-decoration: underline;
-  }
-  
-  .nav ul li a.active {
-    text-decoration: underline; 
-  }
+.logo h1 {
+  color: white;
+  margin-left: 1rem;
+  font-size: 1.5rem;
+  text-decoration: none;
+}
 
-  .profile {
-    display: flex;
-    align-items: center;
-  }
-  
-  .profile-image {
-    width: 45px;
-    height: 40px;
-    border-radius: 50%;
-  }
-  
+
+.nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+.nav ul li {
+  margin: 0 1rem;
+}
+
+.nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}
+
+.nav ul li a:hover {
+  text-decoration: underline;
+}
+
+.nav ul li a.active {
+  text-decoration: underline;
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image {
+  width: 45px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
