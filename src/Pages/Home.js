@@ -13,10 +13,12 @@ export default function Home() {
     },[])
 
     return (
-        <div className="component-page">
+        <div>
             <Header />
+            <div className="component-page">
             <h1>Welcome to, {title}</h1>
             <p>{content}</p>
+            </div>
         </div>
     )
 }
