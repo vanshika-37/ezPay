@@ -9,11 +9,13 @@ export default function Payment() {
         setTitle('Payment');
     }, [])
     return (
-        <div>
+        <div >
             <Header />
-            <div className="component-page">
-                <h1>Welcome to, {title}</h1>
-            </div>
+            <main className="hero-section">
+                <div className="hero-content">
+                    <h1>Welcome to, {title}</h1>
+                </div>
+            </main>
         </div>
     )
 }

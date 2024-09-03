@@ -14,11 +14,13 @@ export default function Home() {
 
     return (
         <div>
-            <Header />
-            <div className="component-page">
-            <h1>Welcome to, {title}</h1>
+        <Header />
+        <main className="hero-section">
+          <div className="hero-content">
+            <h1>Welcome to {title}</h1>
             <p>{content}</p>
-            </div>
-        </div>
+          </div>
+        </main>
+      </div>
     )
 }
