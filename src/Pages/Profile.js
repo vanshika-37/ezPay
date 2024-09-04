@@ -1,21 +1,5 @@
-import Header from "./Header.js";
-import { useState, useEffect } from "react";
+import PageTemplate from "./PageTemplate";
 
 export default function Profile() {
-
-    const [title, setTitle] = useState('');
-
-    useEffect(() => {
-        setTitle('Profile');
-    }, [])
-    return (
-        <div>
-            <div className="home-page-component d-flex flex-column justify-content-center">
-                <Header />
-                <main className="hero-section d-flex text-center">
-                    <h1 className="display-3 fw-bold" style={{ "margin": "0 auto" }}>Welcome to, {title}</h1>
-                </main >
-            </div>
-        </div>
-    )
+    return <PageTemplate title="Profile" />;
 }
