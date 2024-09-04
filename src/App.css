@@ -1,16 +1,29 @@
-body{
-    margin:0;
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7fc;
 }
-.home-page-component{
+
+.home-page-component {
     /* background-color: pink; */
     height: 100vh;
 }
-.header{
+
+h1.display-4 {
+    color: #212529;
+  }
+  
+  p.lead {
+    color: #6c757d;
+  }
+
+.header {
     position: absolute;
     width: 100%;
     top: 0;
     left: 0;
 }
+
 .navbar {
     background-color: #2762A7;
     color: white;

@@ -9,13 +9,13 @@ export default function Profile() {
         setTitle('Profile');
     }, [])
     return (
-        <div >
-            <Header />
-            <main className="hero-section">
-                <div className="hero-content">
-                    <h1>Welcome to, {title}</h1>
-                </div>
-            </main>
+        <div>
+            <div className="home-page-component d-flex flex-column justify-content-center">
+                <Header />
+                <main className="hero-section d-flex text-center">
+                    <h1 className="display-3 fw-bold" style={{ "margin": "0 auto" }}>Welcome to, {title}</h1>
+                </main >
+            </div>
         </div>
     )
 }

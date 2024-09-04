@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export default function Header() {
     return (
         <div className="header">
-            <Navbar expand="lg">
+            <Navbar expand="lg" variant="dark">
                 <Container>
                     <Navbar.Brand href="/">
                         <h1><i><b>EzPay</b></i></h1>
