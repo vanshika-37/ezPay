@@ -1,7 +1,16 @@
 body{
     margin:0;
 }
-
+.home-page-component{
+    /* background-color: pink; */
+    height: 100vh;
+}
+.header{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+}
 .navbar {
     background-color: #2762A7;
     color: white;
