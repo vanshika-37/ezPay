@@ -17,7 +17,7 @@ import com.ezpay.repository.TicketRepository;
 import com.ezpay.service.TicketService;
 
 @RestController
-@RequestMapping("/support")
+@RequestMapping("/api/support")
 public class TicketController {
 	
 	@Autowired
@@ -49,11 +49,23 @@ public class TicketController {
 	}
 	@GetMapping("/balance")
 	public String getBalance() {
-		return "API response for balance page";
+		return "Balance";
 	}
 	@GetMapping("/payment")
 	public String getPayment() {
-		return "API response for Payment page";
+		return "Payment";
+	}
+	@GetMapping("/")
+	public String getHome() {
+		return "EzPay";
+	}
+	@GetMapping("/home")
+    public String getHomeAlternate() {
+        return "EzPay";
+    }
+	@GetMapping("/profile")
+	public String getProfile() {
+		return "Profile";
 	}
 
 	
