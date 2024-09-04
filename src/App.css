@@ -1,27 +1,22 @@
-.component-page{
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  top: 3rem;
+body{
+    margin:0;
 }
 
-.navbar{
-	background-color: #2762A7;
-	color: white;
+.navbar {
+    background-color: #2762A7;
+    color: white;
 }
 
-.navbar-brand{
-	color: white !important;
+
+.navbar-brand {
+    color: white !important;
 }
 
-.nav-link{
-	color: white !important;
-	margin-left: 1rem;
-	position: relative;
-    padding-bottom: 5px; 
+.nav-link {
+    color: white !important;
+    margin-left: 1rem;
+    position: relative;
+    padding-bottom: 5px;
     text-decoration: none;
 }
 
@@ -31,15 +26,15 @@
     left: 0;
     bottom: 0;
     width: 0;
-    height: 2px; 
-    background-color: white; 
+    height: 2px;
+    background-color: white;
 }
 
 .nav-link:hover {
-    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8); 
+    text-shadow: 0px 0px 5px rgba(255, 255, 255, 0.8);
 }
 
 .nav-link.active {
     color: white;
-    border-bottom: 2px solid white; 
+    border-bottom: 2px solid white;
 }
