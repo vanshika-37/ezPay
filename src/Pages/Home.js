@@ -7,7 +7,13 @@ export default function Home() {
   const [content, setContent] = useState('');
 
   useEffect(() => {
-    setTitle('EzPay');
+    const fetchTitle = async () => {
+      const response = await fetch('http://localhost:8090/api/support/home');
+      const data = await response.text();
+      setTitle(data);
+  };
+
+  fetchTitle();
     setContent('A Secure and Efficient Digital Payment Solution');
   }, []);
 
