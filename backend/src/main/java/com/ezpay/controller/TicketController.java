@@ -1,5 +1,5 @@
 package com.ezpay.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import com.ezpay.service.TicketService;
 
 @RestController
 @RequestMapping("/api/support")
+@CrossOrigin(origins = "http://localhost:3000")
 public class TicketController {
 	
 	@Autowired
