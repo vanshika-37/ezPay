@@ -27,6 +27,7 @@ public class TicketServiceTest {
 	private TicketRepository ticketRepository;
 
 	private Ticket ticket;
+	private Ticket ticket2;
 
 	@Before
 	public void setUp() {
@@ -39,6 +40,14 @@ public class TicketServiceTest {
 		ticket.setIssueDescription("Issue description");
 		ticket.setDateCreated(new Date());
 		ticket.setStatus("PENDING");
+		
+		ticket2 = new Ticket();
+		ticket2.setTicketId(2L);
+		ticket2.setUserId(101L);
+		ticket2.setIssueDescription("Login Issue");
+		ticket2.setDateCreated(new Date());
+		ticket2.setStatus("PENDING");
+		
 	}
 
 	@Test
@@ -53,6 +62,12 @@ public class TicketServiceTest {
 		verify(ticketRepository, times(1)).save(ticket);
 		assertNotNull(savedTicket);
 		assertEquals(ticket.getTicketId(), savedTicket.getTicketId());
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void testSaveTicket_NullTicket() {
+	    // Call the service method with null ticket
+	    ticketService.saveTicket(null);
 	}
 
 	@Test
@@ -84,18 +99,38 @@ public class TicketServiceTest {
 
 	@Test
 	public void testGetAllTickets() {
-		// Mock the repository findAllByUserId method
-		List<Ticket> tickets = Arrays.asList(ticket);
-		when(ticketRepository.findAllByUserId(101L)).thenReturn(tickets);
+	    // Mock the repository to return only tickets with userId 101L
+	    List<Ticket> tickets = Arrays.asList(ticket, ticket2);
+	    when(ticketRepository.findAllByUserId(101L)).thenReturn(tickets);
 
-		// Call the service method
-		List<Ticket> userTickets = ticketService.getAllTickets(101L);
+	    // Call the service method
+	    List<Ticket> userTickets = ticketService.getAllTickets(101L);
 
-		// Verify and assert
-		verify(ticketRepository, times(1)).findAllByUserId(101L);
-		assertNotNull(userTickets);
-		assertEquals(1, userTickets.size());
+	    // Verify that the repository method was called once
+	    verify(ticketRepository, times(1)).findAllByUserId(101L);
+
+	    // Assertions for the list not being null and having the correct size
+	    assertNotNull(userTickets);
+	    assertEquals(2, userTickets.size());
+
+	    // Check if the tickets returned have the correct userId
+	    for (Ticket t : userTickets) {
+	        assertEquals(Long.valueOf(101L), t.getUserId());
+	    }
+
+	    // Assert that the first ticket in the list is ticket and contains expected data
+	    Ticket firstTicket = userTickets.get(0);
+	    assertEquals(Long.valueOf(1L), firstTicket.getTicketId());
+	    assertEquals("Issue description", firstTicket.getIssueDescription());
+	    assertEquals("PENDING", firstTicket.getStatus());
+
+	    // Assert that the second ticket in the list is ticket2 and contains expected data
+	    Ticket secondTicket = userTickets.get(1);
+	    assertEquals(Long.valueOf(2L), secondTicket.getTicketId());
+	    assertEquals("Login Issue", secondTicket.getIssueDescription());
+	    assertEquals("PENDING", secondTicket.getStatus());
 	}
+
 
 	@Test
 	public void testDeleteTicket() {

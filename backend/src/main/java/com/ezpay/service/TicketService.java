@@ -23,6 +23,9 @@ public class TicketService {
 
 	//Storing the ticket in the database
 	public Ticket saveTicket(Ticket ticket) {
+		if (ticket == null) {
+            throw new IllegalArgumentException("Ticket cannot be null");
+        }
 		System.out.println(ticket.getUserId());
 		System.out.println(ticket.getDateCreated() );
 		System.out.println(ticket.getStatus() );
