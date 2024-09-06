@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import TicketCard from "./TicketCard";
 import "../styles/help.css";
+import CreateTicket from "./CreateTicket";
 
 export default function Help() {
 
