@@ -16,159 +16,216 @@ import org.mockito.MockitoAnnotations;
 
 import com.ezpay.entity.Ticket;
 import com.ezpay.repository.TicketRepository;
-import com.ezpay.service.TicketService;
 
+/**
+ * Unit tests for the {@link TicketService} class.
+ * This test class uses Mockito to mock the {@link TicketRepository} and test various service methods.
+ * 
+ * @author [Your Name]
+ * @since [Date of Creation]
+ */
 public class TicketServiceTest {
 
-	@InjectMocks
-	private TicketService ticketService;
+    /**
+     * Injects mock dependencies into {@link TicketService}.
+     */
+    @InjectMocks
+    private TicketService ticketService;
 
-	@Mock
-	private TicketRepository ticketRepository;
+    /**
+     * Mocked {@link TicketRepository} to avoid real database operations.
+     */
+    @Mock
+    private TicketRepository ticketRepository;
 
-	private Ticket ticket;
-	private Ticket ticket2;
+    private Ticket ticket;
+    private Ticket ticket2;
 
-	@Before
-	public void setUp() {
-		MockitoAnnotations.openMocks(this);
+    /**
+     * Initializes mock objects and sets up sample ticket data before each test.
+     * 
+     * @throws Exception if there is an issue during setup
+     */
+    @Before
+    public void setUp() throws Exception {
+        // Initialize Mockito annotations
+        MockitoAnnotations.openMocks(this);
 
-		// Sample Ticket Object
-		ticket = new Ticket();
-		ticket.setTicketId(1L);
-		ticket.setUserId(101L);
-		ticket.setIssueDescription("Issue description");
-		ticket.setDateCreated(new Date());
-		ticket.setStatus("PENDING");
-		
-		ticket2 = new Ticket();
-		ticket2.setTicketId(2L);
-		ticket2.setUserId(101L);
-		ticket2.setIssueDescription("Login Issue");
-		ticket2.setDateCreated(new Date());
-		ticket2.setStatus("PENDING");
-		
-	}
+        // Create a sample ticket
+        ticket = new Ticket();
+        ticket.setTicketId(1L);
+        ticket.setUserId(101L);
+        ticket.setIssueDescription("Issue description");
+        ticket.setDateCreated(new Date());
+        ticket.setStatus("PENDING");
 
-	@Test
-	public void testSaveTicket() {
-		// Mock the repository save method
-		when(ticketRepository.save(ticket)).thenReturn(ticket);
+        // Create another sample ticket
+        ticket2 = new Ticket();
+        ticket2.setTicketId(2L);
+        ticket2.setUserId(101L);
+        ticket2.setIssueDescription("Login Issue");
+        ticket2.setDateCreated(new Date());
+        ticket2.setStatus("PENDING");
+    }
 
-		// Call the service method
-		Ticket savedTicket = ticketService.saveTicket(ticket);
+    /**
+     * Tests the {@link TicketService#saveTicket(Ticket)} method.
+     * Ensures that the ticket is successfully saved and that the repository's save method is called.
+     */
+    @Test
+    public void testSaveTicket() {
+        // Mock the repository save method to return the ticket
+        when(ticketRepository.save(ticket)).thenReturn(ticket);
 
-		// Verify and assert
-		verify(ticketRepository, times(1)).save(ticket);
-		assertNotNull(savedTicket);
-		assertEquals(ticket.getTicketId(), savedTicket.getTicketId());
-	}
-	
-	@Test(expected = IllegalArgumentException.class)
-	public void testSaveTicket_NullTicket() {
-	    // Call the service method with null ticket
-	    ticketService.saveTicket(null);
-	}
+        // Call the service method
+        Ticket savedTicket = ticketService.saveTicket(ticket);
 
-	@Test
-	public void testGetTicket() {
-		// Mock the repository findById method
-		when(ticketRepository.findById(1L)).thenReturn(Optional.of(ticket));
+        // Verify that save was called and assert the result
+        verify(ticketRepository, times(1)).save(ticket);
+        assertNotNull(savedTicket);
+        assertEquals(ticket.getTicketId(), savedTicket.getTicketId());
+    }
 
-		// Call the service method
-		Ticket foundTicket = ticketService.getTicket(1L);
+    /**
+     * Tests the {@link TicketService#saveTicket(Ticket)} method with a null input.
+     * Expects an {@link IllegalArgumentException}.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void testSaveTicket_NullTicket() {
+        // Call saveTicket with null, expecting an exception
+        ticketService.saveTicket(null);
+    }
 
-		// Verify and assert
-		verify(ticketRepository, times(1)).findById(1L);
-		assertNotNull(foundTicket);
-		assertEquals(ticket.getTicketId(), foundTicket.getTicketId());
-	}
+    /**
+     * Tests the {@link TicketService#getTicket(Long)} method.
+     * Verifies that a ticket is fetched correctly from the repository.
+     * 
+     * @param ticketId the ID of the ticket to retrieve
+     */
+    @Test
+    public void testGetTicket() {
+        // Mock the repository findById method to return the ticket
+        when(ticketRepository.findById(1L)).thenReturn(Optional.of(ticket));
 
-	@Test
-	public void testGetTicket_NotFound() {
-		// Mock the repository findById method to return empty
-		when(ticketRepository.findById(1L)).thenReturn(Optional.empty());
+        // Call the service method
+        Ticket foundTicket = ticketService.getTicket(1L);
 
-		// Call the service method
-		Ticket foundTicket = ticketService.getTicket(1L);
+        // Verify and assert
+        verify(ticketRepository, times(1)).findById(1L);
+        assertNotNull(foundTicket);
+        assertEquals(ticket.getTicketId(), foundTicket.getTicketId());
+    }
 
-		// Verify and assert
-		verify(ticketRepository, times(1)).findById(1L);
-		assertNull(foundTicket);
-	}
+    /**
+     * Tests the {@link TicketService#getTicket(Long)} method when the ticket is not found.
+     * Verifies that the result is null when the ticket is not present in the repository.
+     * 
+     * @param ticketId the ID of the ticket to retrieve
+     */
+    @Test
+    public void testGetTicket_NotFound() {
+        // Mock the repository findById method to return an empty optional
+        when(ticketRepository.findById(1L)).thenReturn(Optional.empty());
 
-	@Test
-	public void testGetAllTickets() {
-	    // Mock the repository to return only tickets with userId 101L
-	    List<Ticket> tickets = Arrays.asList(ticket, ticket2);
-	    when(ticketRepository.findAllByUserId(101L)).thenReturn(tickets);
+        // Call the service method
+        Ticket foundTicket = ticketService.getTicket(1L);
 
-	    // Call the service method
-	    List<Ticket> userTickets = ticketService.getAllTickets(101L);
+        // Verify and assert
+        verify(ticketRepository, times(1)).findById(1L);
+        assertNull(foundTicket);
+    }
 
-	    // Verify that the repository method was called once
-	    verify(ticketRepository, times(1)).findAllByUserId(101L);
+    /**
+     * Tests the {@link TicketService#getAllTickets(Long)} method.
+     * Ensures that all tickets for a user are fetched from the repository.
+     * 
+     * @param userId the ID of the user whose tickets are being fetched
+     * @return a list of tickets belonging to the user
+     */
+    @Test
+    public void testGetAllTickets() {
+        // Mock the repository to return the list of tickets for the user
+        List<Ticket> tickets = Arrays.asList(ticket, ticket2);
+        when(ticketRepository.findAllByUserId(101L)).thenReturn(tickets);
 
-	    // Assertions for the list not being null and having the correct size
-	    assertNotNull(userTickets);
-	    assertEquals(2, userTickets.size());
+        // Call the service method
+        List<Ticket> userTickets = ticketService.getAllTickets(101L);
 
-	    // Check if the tickets returned have the correct userId
-	    for (Ticket t : userTickets) {
-	        assertEquals(Long.valueOf(101L), t.getUserId());
-	    }
+        // Verify and assert
+        verify(ticketRepository, times(1)).findAllByUserId(101L);
+        assertNotNull(userTickets);
+        assertEquals(2, userTickets.size());
 
-	    // Assert that the first ticket in the list is ticket and contains expected data
-	    Ticket firstTicket = userTickets.get(0);
-	    assertEquals(Long.valueOf(1L), firstTicket.getTicketId());
-	    assertEquals("Issue description", firstTicket.getIssueDescription());
-	    assertEquals("PENDING", firstTicket.getStatus());
+        // Check the details of the first and second tickets
+        Ticket firstTicket = userTickets.get(0);
+        assertEquals(Long.valueOf(1L), firstTicket.getTicketId());
+        assertEquals("Issue description", firstTicket.getIssueDescription());
+        assertEquals("PENDING", firstTicket.getStatus());
 
-	    // Assert that the second ticket in the list is ticket2 and contains expected data
-	    Ticket secondTicket = userTickets.get(1);
-	    assertEquals(Long.valueOf(2L), secondTicket.getTicketId());
-	    assertEquals("Login Issue", secondTicket.getIssueDescription());
-	    assertEquals("PENDING", secondTicket.getStatus());
-	}
+        Ticket secondTicket = userTickets.get(1);
+        assertEquals(Long.valueOf(2L), secondTicket.getTicketId());
+        assertEquals("Login Issue", secondTicket.getIssueDescription());
+        assertEquals("PENDING", secondTicket.getStatus());
+    }
 
+    /**
+     * Tests the {@link TicketService#deleteTicket(Long)} method.
+     * Verifies that the ticket is deleted from the repository and the result is true.
+     * 
+     * @param ticketId the ID of the ticket to be deleted
+     * @return true if the deletion is successful, false otherwise
+     */
+    @Test
+    public void testDeleteTicket() {
+        // Call the service method
+        Boolean result = ticketService.deleteTicket(1L);
 
-	@Test
-	public void testDeleteTicket() {
-		// Call the service method
-		Boolean result = ticketService.deleteTicket(1L);
+        // Verify and assert
+        verify(ticketRepository, times(1)).deleteById(1L);
+        assertTrue(result);
+    }
 
-		// Verify
-		verify(ticketRepository, times(1)).deleteById(1L);
-		assertTrue(result);
-	}
+    /**
+     * Tests the {@link TicketService#deleteTicket(Long)} method when an exception occurs during deletion.
+     * Verifies that the result is false in case of a failure.
+     * 
+     * @param ticketId the ID of the ticket to be deleted
+     * @return false if the deletion fails
+     */
+    @Test
+    public void testDeleteTicket_Failure() {
+        // Simulate an exception during deletion
+        doThrow(new RuntimeException()).when(ticketRepository).deleteById(1L);
 
-	@Test
-	public void testDeleteTicket_Failure() {
-		// Simulate exception
-		doThrow(new RuntimeException()).when(ticketRepository).deleteById(1L);
+        // Call the service method
+        Boolean result = ticketService.deleteTicket(1L);
 
-		// Call the service method
-		Boolean result = ticketService.deleteTicket(1L);
+        // Verify and assert
+        verify(ticketRepository, times(1)).deleteById(1L);
+        assertFalse(result);
+    }
 
-		// Verify
-		verify(ticketRepository, times(1)).deleteById(1L);
-		assertFalse(result);
-	}
+    /**
+     * Tests the {@link TicketService#resolveTicket(Long)} method.
+     * Verifies that a ticket is marked as resolved, the status is updated to "RESOLVED",
+     * and the resolution date is set.
+     * 
+     * @param ticketId the ID of the ticket to resolve
+     * @return the resolved ticket with updated status and resolution date
+     */
+    @Test
+    public void testResolveTicket() {
+        // Mock the repository findById and save methods
+        when(ticketRepository.findById(1L)).thenReturn(Optional.of(ticket));
+        when(ticketRepository.save(ticket)).thenReturn(ticket);
 
-	@Test
-	public void testResolveTicket() {
-		// Mock the repository findById and save methods
-		when(ticketRepository.findById(1L)).thenReturn(Optional.of(ticket));
-		when(ticketRepository.save(ticket)).thenReturn(ticket);
+        // Call the service method
+        Ticket resolvedTicket = ticketService.resolveTicket(1L);
 
-		// Call the service method
-		Ticket resolvedTicket = ticketService.resolveTicket(1L);
-
-		// Verify and assert
-		verify(ticketRepository, times(1)).findById(1L);
-		verify(ticketRepository, times(1)).save(ticket);
-		assertEquals("RESOLVED", resolvedTicket.getStatus());
-		assertNotNull(resolvedTicket.getDateResolved());
-	}
-
+        // Verify and assert
+        verify(ticketRepository, times(1)).findById(1L);
+        verify(ticketRepository, times(1)).save(ticket);
+        assertEquals("RESOLVED", resolvedTicket.getStatus());
+        assertNotNull(resolvedTicket.getDateResolved());
+    }
 }
