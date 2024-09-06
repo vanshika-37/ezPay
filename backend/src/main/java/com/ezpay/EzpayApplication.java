@@ -9,5 +9,5 @@ public class EzpayApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(EzpayApplication.class, args);
 	}
-
+ 
 }

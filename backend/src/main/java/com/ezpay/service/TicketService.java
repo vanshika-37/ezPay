@@ -26,11 +26,6 @@ public class TicketService {
 		if (ticket == null) {
             throw new IllegalArgumentException("Ticket cannot be null");
         }
-		System.out.println(ticket.getUserId());
-		System.out.println(ticket.getDateCreated() );
-		System.out.println(ticket.getStatus() );
-		System.out.println(ticket.getDateResolved());
-		//System.out.println(ticket.getUserId());
 		return ticketRepository.save(ticket);
 	}
 	
@@ -62,6 +57,14 @@ public class TicketService {
 		Ticket ticket = this.getTicket(ticketId);
 		ticket.setDateResolved(new Date());
 		ticket.setStatus("RESOLVED");
+		return ticketRepository.save(ticket);
+		
+	}
+	
+	public Ticket unresolveTicket(Long ticketId) {
+		Ticket ticket = this.getTicket(ticketId);
+		ticket.setDateResolved(null);
+		ticket.setStatus("PENDING");
 		return ticketRepository.save(ticket);
 		
 	}

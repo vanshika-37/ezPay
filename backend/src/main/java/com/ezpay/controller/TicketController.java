@@ -48,6 +48,11 @@ public class TicketController {
 	public Ticket resolveTicket(@PathVariable Long ticketId) {
 		return ticketService.resolveTicket(ticketId);
 	}
+	
+	@PutMapping("/unresolveticket/{ticketId}")
+	public Ticket unresolveTicket(@PathVariable Long ticketId) {
+		return ticketService.unresolveTicket(ticketId);
+	}
 	@GetMapping("/balance")
 	public String getBalance() {
 		return "Balance";
