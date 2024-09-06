@@ -1,29 +1,78 @@
 .help-page {
+    background-color: #ecf3f8;
     height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
 }
 
 .help-header {
     height: fit-content;
-    background-color: aqua;
 }
 
+.help-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+    padding: 1rem;
+    gap: 2rem;
+    background-color: #ecf3f8;
+    margin: 40px;
+}
+
+.help-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .help-cards {
     flex-grow: 1;
-    background-color: antiquewhite;
+    background-color: #ecf3f8;
     display: flex;
     justify-content: center;
     align-items: baseline;
     flex-wrap: wrap;
+    gap: 40px;
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        padding: 30px;
+    }
+    
+    .card-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .help-create-btn {
+        background-color: #E4813A;
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        width: 140px;
+    }
+    
+    .card {
+        cursor: pointer;
+        width: 20rem;
+        height: 15rem;
 }
 
-.ticket-cards {
-    background-color: aqua;
-}
+@media only screen and (max-width: 600px) {
+    .card {
+        width: 15rem;
+        font-size: 15px;
+    }
 
-.cards {
-    width: 280px;
-    height: 150px;
-    background-color: blueviolet;
+button {
+    max-width: 5rem;
+    max-height: 2rem;
+    font-size: x-small;
+}
 }
