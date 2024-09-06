@@ -21,8 +21,8 @@ import com.ezpay.repository.TicketRepository;
  * Unit tests for the {@link TicketService} class.
  * This test class uses Mockito to mock the {@link TicketRepository} and test various service methods.
  * 
- * @author [Your Name]
- * @since [Date of Creation]
+ * @author Vanshika, Vaishnave
+ * @since 5th September, 2024
  */
 public class TicketServiceTest {
 
