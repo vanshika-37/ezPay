@@ -12,21 +12,23 @@ export default function TicketCard(props) {
 
     return (
         <div className='ticket-cards'>
-            <Card className='card' onClick={handleModalShow}>
+            <Card className='card'>
                 <Card.Body className='card-body'>
-                    <Card.Title>
-                        #{props.ticket.ticketId}
-                    </Card.Title>
-                    <Card.Text>
-                        <h5>{props.ticket.issueDescription}</h5>
-                        <p>Status: {props.ticket.status}</p>
-                    </Card.Text>
+                    <div onClick={handleModalShow}>
+                        <Card.Title>
+                            #{props.ticket.ticketId}
+                        </Card.Title>
+                        <Card.Text>
+                            <h5>{props.ticket.issueDescription}</h5>
+                            <p>Status: {props.ticket.status}</p>
+                        </Card.Text>
+                    </div>
                     <div className='card-btns'>
                         <Button 
                             variant={props.ticket.status == 'OPEN' ? 'success' : 'primary'} 
                             onClick={() => props.resolveHandler(props.ticket.ticketId)}
                         >
-                            {props.ticket.status == 'OPEN' ? <p>RESOLVE</p> : <p>UNRESOLVE</p>}
+                            {props.ticket.status == 'OPEN' ? 'RESOLVE' : 'UNRESOLVE'}
                         </Button>
 
                         <Button 
