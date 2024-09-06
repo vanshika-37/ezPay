@@ -25,10 +25,10 @@ export default function TicketCard(props) {
                     </div>
                     <div className='card-btns'>
                         <Button 
-                            variant={props.ticket.status == 'OPEN' ? 'success' : 'primary'} 
+                            variant={props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'success' : 'primary'} 
                             onClick={() => props.resolveHandler(props.ticket.ticketId)}
                         >
-                            {props.ticket.status == 'OPEN' ? 'RESOLVE' : 'UNRESOLVE'}
+                            {props.ticket.status === 'OPEN'|| props.ticket.status === 'PENDING' ? 'RESOLVE' : 'UNRESOLVE'}
                         </Button>
 
                         <Button 
@@ -48,7 +48,7 @@ export default function TicketCard(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <p>Created Date: {props.ticket.dateCreated}</p>
-                    {props.ticket.status == 'OPEN' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>}
+                    {props.ticket.status === 'OPEN'|| props.ticket.status === 'PENDING' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>}
                     <p>Status: {props.ticket.status}</p>
                 </Modal.Body>
             </Modal>
