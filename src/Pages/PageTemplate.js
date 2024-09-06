@@ -1,6 +1,12 @@
 import Header from "./Header.js";
 import { useState, useEffect } from "react";
 
+/* 
+    @author: Vanshika Sood
+    @since: 6th September 2024 
+    PageTemplate Component is used to do render the content for each page
+*/
+
 export default function PageTemplate(props) {
     // useState to manage the 'title' state, which will display the page's title
     const [title, setTitle] = useState('');

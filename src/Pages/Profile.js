@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "./PageTemplate";
 
+/* 
+    @author: Vanshika Sood
+    @since: 6th September 2024 
+    Profile Component is used to do fetch content for the Profile page
+*/
+
 export default function Profile() {
     // Initialize 'title' state to store the data fetched from the API, starting as an empty string.
     const [title, setTitle] = useState('');

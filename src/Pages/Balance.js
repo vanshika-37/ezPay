@@ -1,6 +1,12 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "./PageTemplate";
 
+/* 
+    @author: Vanshika Sood
+    @since: 6th September 2024 
+    Balance Component is used to do fetch content for the balance page
+*/
+
 export default function Balance() {
     // useState hook to manage the 'title' state. Initially, it's an empty string.
     const [title, setTitle] = useState('');

@@ -4,6 +4,13 @@ import TicketCard from "./TicketCard";
 import "../styles/help.css";
 import CreateTicket from "./CreateTicket";
 
+/* 
+    @author: Vaishnave JP
+    @since: 6th September 2024 
+    Help Component is used to do call the API endpoints for ticket related queries, like fetching, resolving and deleting. It also calls the TicketCard component for rendering each ticket
+*/
+
+
 export default function Help() {
 
     const base = "http://localhost:8090/api/support"; // Base URL for API requests
