@@ -9,9 +9,9 @@ export default function PageTemplate(props) {
     }, [props.title]);
 
     return (
-        <div className="home-page-component d-flex flex-column justify-content-center">
+        <div className="home-page-component d-flex flex-column">
             <Header />
-            <main className="hero-section d-flex text-center">
+            <main className="hero-section d-flex text-center justify-content-center align-items-center" style={{"flex-grow":"1"}}>
                 <h1 className="display-3 fw-bold" style={{ margin: "0 auto" }}>Welcome to, {title}</h1>
             </main>
         </div>

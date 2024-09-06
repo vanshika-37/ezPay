@@ -1,0 +1,29 @@
+.help-page {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.help-header {
+    height: fit-content;
+    background-color: aqua;
+}
+
+.help-cards {
+    flex-grow: 1;
+    background-color: antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.ticket-cards {
+    background-color: aqua;
+}
+
+.cards {
+    width: 280px;
+    height: 150px;
+    background-color: blueviolet;
+}

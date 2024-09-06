@@ -18,7 +18,7 @@ h1.display-4 {
   }
 
 .header {
-    position: absolute;
+    /* position: absolute; */
     width: 100%;
     top: 0;
     left: 0;

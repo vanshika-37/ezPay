@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <div>
-      <div className="home-page-component d-flex flex-column justify-content-center">
+      <div className="home-page-component d-flex flex-column">
         <Header />
         <main className="hero-section d-flex pt-5 align-items-center">
           <Container >
