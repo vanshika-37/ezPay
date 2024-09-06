@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Header from "./Header";
 import TicketCard from "./TicketCard";
 import "../styles/help.css";
+import CreateTicket from "./CreateTicket";
 
 export default function Help() {
 
@@ -29,14 +30,20 @@ export default function Help() {
             <div className="help-header">
                 <Header />
             </div>
-            <div className="help-cards">
-                {
-                    userTickets.map((ticket, key) => {
-                        return <TicketCard 
-                                    ticket = {ticket}
-                                />
-                    })
-                }
+            <div className="help-body">
+                <div className="help-title">
+                    <h2>TICKETS</h2>
+                    <CreateTicket className="help-create-btn" userId = {userId}/>
+                </div>
+                <div className="help-cards">
+                    {
+                        userTickets.map((ticket, key) => {
+                            return <TicketCard 
+                                        ticket = {ticket}
+                                    />
+                        })
+                    }
+                </div>
             </div>
         </div>
     )
