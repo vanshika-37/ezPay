@@ -59,7 +59,7 @@ export default function Help() {
     useEffect(() => {
         getUserTickets();
         console.log(userTickets);
-    }, [userTickets]); // Re-run the effect when userTickets changes
+    }, [])
 
 
     // Function to add a new ticket to the state
