@@ -12,21 +12,23 @@ export default function TicketCard(props) {
 
     return (
         <div className='ticket-cards'>
-            <Card className='card' onClick={handleModalShow}>
+            <Card className='card'>
                 <Card.Body className='card-body'>
-                    <Card.Title>
-                        #{props.ticket.ticketId}
-                    </Card.Title>
-                    <Card.Text>
-                        <h5>{props.ticket.issueDescription}</h5>
-                        <p>Status: {props.ticket.status}</p>
-                    </Card.Text>
+                    <div onClick={handleModalShow}>
+                        <Card.Title>
+                            #{props.ticket.ticketId}
+                        </Card.Title>
+                        <Card.Text>
+                            <h5>{props.ticket.issueDescription}</h5>
+                            <p>Status: {props.ticket.status}</p>
+                        </Card.Text>
+                    </div>
                     <div className='card-btns'>
                         <Button 
-                            variant={props.ticket.status == 'PENDING' ? 'success' : 'primary'} 
+                            variant={props.ticket.status == 'OPEN' ? 'success' : 'primary'} 
                             onClick={() => props.resolveHandler(props.ticket.ticketId)}
                         >
-                            {props.ticket.status == 'PENDING' ? <p>RESOLVE</p> : <p>UNRESOLVE</p>}
+                            {props.ticket.status == 'OPEN' ? 'RESOLVE' : 'UNRESOLVE'}
                         </Button>
 
                         <Button 
@@ -46,7 +48,7 @@ export default function TicketCard(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <p>Created Date: {props.ticket.dateCreated}</p>
-                    {props.ticket.status == 'PENDING' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>}
+                    {props.ticket.status == 'OPEN' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>}
                     <p>Status: {props.ticket.status}</p>
                 </Modal.Body>
             </Modal>

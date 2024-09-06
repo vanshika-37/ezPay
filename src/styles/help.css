@@ -1,6 +1,6 @@
 .help-page {
     background-color: #ecf3f8;
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -27,6 +27,11 @@
     justify-content: space-between;
 }
 
+.help-title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 .help-cards {
     flex-grow: 1;
     background-color: #ecf3f8;
@@ -35,34 +40,36 @@
     align-items: baseline;
     flex-wrap: wrap;
     gap: 40px;
-}
-
-.card-body {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    text-align: left;
-    padding: 30px;
-}
-
-.card-btns {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-}
-
-.help-create-btn {
-    background-color: #E4813A;
-    border: none;
-    border-radius: 0.5rem;
-    color: white;
-    width: 140px;
-}
-
-.card {
-    cursor: pointer;
-    width: 20rem;
-    height: 15rem;
+    }
+    
+    .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: left;
+        padding: 30px;
+        gap: 20px;
+    }
+    
+    .card-btns {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .help-create-btn {
+        background-color: #E4813A;
+        border: none;
+        border-radius: 0.5rem;
+        color: white;
+        width: 140px;
+    }
+    
+    .card {
+        cursor: pointer;
+        width: 20rem;
+        height: 15rem;
+        text-align: center;
 }
 
 @media only screen and (max-width: 600px) {
@@ -71,9 +78,14 @@
         font-size: 15px;
     }
 
-    button {
-        max-width: 5rem;
-        max-height: 2rem;
-        font-size: x-small;
+.card-btns {
+    width: 5rem;
+    max-height: 2rem;
+    gap: 10px;
+        font-size: 10px;
     }
+    
+    .help-title {
+        gap: 10px;
+}
 }
