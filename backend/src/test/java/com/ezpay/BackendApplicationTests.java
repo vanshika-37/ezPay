@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  * <p>The test verifies that the application can start up without issues,
  * meaning that all beans and configuration settings are correctly set.
  * 
- * @author Vanshika, Vaishnave
+ * @author Vanshika Sood, Vaishnave JP
  * @since 5th September, 2024
  */
 @RunWith(SpringRunner.class)
