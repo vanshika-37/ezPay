@@ -50,11 +50,9 @@ export default function Help() {
 
     useEffect(() => {
         getUserTickets();
-    }, [])
-
-    useEffect(() => {
         console.log(userTickets);
     }, [userTickets])
+
 
     const addNewTicket = (newTicket) => {
         setUserTickets(prevUserTickets => [newTicket, ...prevUserTickets]);
