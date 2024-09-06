@@ -26,7 +26,7 @@ export default function TicketCard(props) {
                     <div className='card-btns'>
                         <Button 
                             variant={props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'success' : 'primary'} 
-                            onClick={() => props.resolveHandler(props.ticket.ticketId)}
+                            onClick={() => props.resolveHandler(props.ticket.ticketId,props.ticket.status)}
                         >
                             {props.ticket.status === 'OPEN'|| props.ticket.status === 'PENDING' ? 'RESOLVE' : 'UNRESOLVE'}
                         </Button>

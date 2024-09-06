@@ -17,10 +17,17 @@ export default function Help() {
         setUserTickets(json);
     }
 
-    const resolveTicket = async(ticketId) => {
-        let response = await fetch(base + `/resolveticket/${ticketId}`, {"method":"PUT"});
-        let json = await response.json();
-
+    const resolveTicket = async(ticketId,status) => {
+        let response;
+        let json;
+        if(status==="PENDING"){
+        response = await fetch(base + `/resolveticket/${ticketId}`, {"method":"PUT"});
+        json = await response.json();
+        }
+        else if (status==="RESOLVED"){
+            response = await fetch(base + `/unresolveticket/${ticketId}`, {"method":"PUT"});
+            json = await response.json();
+        }
         setUserTickets(prevUserTicket => 
             prevUserTicket.map(ticket => 
                 ticket.ticketId === ticketId ? {...ticket, status: json.status} : ticket
