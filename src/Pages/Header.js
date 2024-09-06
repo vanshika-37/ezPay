@@ -2,6 +2,7 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
+// Header component to reuse in other pages. This consists of links to other pages.
 export default function Header() {
     return (
         <div className="header">
@@ -10,7 +11,9 @@ export default function Header() {
                     <Navbar.Brand href="/">
                         <h1><i><b>EzPay</b></i></h1>
                     </Navbar.Brand>
+                    {/* Button to toggle navbar visibility on smaller screens */}
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    {/* Collapsible navbar content (links) */}
                     <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
                         <Nav className="header-navbar-items">
                             <Nav.Link as={NavLink} to="/" className={({ isActive }) => isActive ? "active" : ""}>Home</Nav.Link>
