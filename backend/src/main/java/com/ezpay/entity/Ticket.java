@@ -14,6 +14,7 @@ import jakarta.persistence.*;
 
 
 
+
 @Entity
 @Table(name="support_ticket")
 @Access(AccessType.FIELD)
