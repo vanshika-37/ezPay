@@ -3,9 +3,10 @@ import Header from "./Header";
 import TicketCard from "./TicketCard";
 import "../styles/help.css";
 import CreateTicket from "./CreateTicket";
+import ChatDialog from "./ChatDialog";
 
 /* 
-    @author: Vaishnave JP
+    @author: Vaishnave JP, Subhashree M
     @since: 6th September 2024 
     Help Component is used to do call the API endpoints for ticket related queries, like fetching, resolving and deleting. It also calls the TicketCard component for rendering each ticket
 */
@@ -74,6 +75,29 @@ export default function Help() {
         setUserTickets(prevUserTickets => [newTicket, ...prevUserTickets]);
     };
 
+    const [isOpen, setIsOpen] = useState(false);
+    const [activeTicket, setActiveTicket] = useState(null);
+    const [messages, setMessages] = useState([]);
+
+    const toggleChat = (id) => {
+        setIsOpen(!isOpen);
+        if(isOpen == false) {
+            setActiveTicket(id);
+            getMessages(id);
+        }
+        else {
+            setActiveTicket(null);
+            setMessages([]);
+        }
+
+    };
+
+    const getMessages = async (id) => {
+        let response = await fetch(base + `/getchat/${id}`, {"method": "GET"});
+        let json = await response.json();
+        setMessages(json);
+    }
+
     return(
         <div className="help-page">
             <div className="help-header">
@@ -93,12 +117,14 @@ export default function Help() {
                             return <TicketCard 
                                         ticket = {ticket} // Pass the ticket data
                                         resolveHandler = {resolveTicket} // Pass resolve function
+                                        chatHandler = {toggleChat} // Pass resolve function
                                         deleteHandler = {deleteTicket} // Pass delete function
                                     />
                         })
                     }
                 </div>
             </div>
+            {isOpen && <ChatDialog onClose={toggleChat} ticketId={activeTicket} messages1={messages}/>}
         </div>
     )
 }

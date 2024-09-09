@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
  * A modal is shown when the ticket card is clicked, displaying detailed ticket info.
  * 
  * 
- * @author: Vaishnave JP
+ * @author: Vaishnave JP, Subhashree M
  * @since: 6th September 2024
  */
 
@@ -46,7 +46,15 @@ export default function TicketCard(props) {
                             variant={props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'success' : 'primary'}
                             onClick={() => props.resolveHandler(props.ticket.ticketId, props.ticket.status)}
                         >
-                            {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'RESOLVE' : 'UNRESOLVE'}
+                            {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'Resolve' : 'Unresolve'}
+                        </Button>
+                        
+                        {/* Button to show the chat */}
+                        <Button
+                            variant="primary"
+                            onClick={() => props.chatHandler(props.ticket.ticketId)}
+                        >
+                            Show Chat
                         </Button>
 
                         {/* Button to delete the ticket */}
