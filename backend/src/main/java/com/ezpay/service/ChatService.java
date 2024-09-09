@@ -28,7 +28,7 @@ public class ChatService {
     @Autowired
     private ChatbotAPIClient chatbotAPIClient;  // Integration with external chatbot API
 
-    public ChatbotMessage sendMessage(Long ticketId, String message) throws Exception {
+    public ChatbotMessage sendMessage(Long ticketId, String message, String sender) throws Exception {
         // Get the support ticket
         Ticket ticket = ticketRepository.findById(ticketId)
                 .orElseThrow(() -> new Exception("Ticket not found"));
@@ -36,7 +36,8 @@ public class ChatService {
         // Save user message
         ChatbotMessage userMessage = new ChatbotMessage();
         userMessage.setTicket(ticket);
-        userMessage.setSender(ChatbotMessage.Sender.User);
+        if(sender.equals("User")) userMessage.setSender(ChatbotMessage.Sender.User);
+        else if(sender.equals("Chatbot")) userMessage.setSender(ChatbotMessage.Sender.Chatbot);
         userMessage.setMessage(message);
         userMessage.setTimestamp(new Date());
         chatbotMessageRepository.saveAndFlush(userMessage);

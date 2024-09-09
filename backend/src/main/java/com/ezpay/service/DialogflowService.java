@@ -12,6 +12,7 @@ import com.google.api.gax.core.FixedCredentialsProvider;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.api.gax.rpc.ApiException;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.springframework.stereotype.Service;
 
@@ -19,12 +20,12 @@ import org.springframework.stereotype.Service;
 public class DialogflowService {
 
     private final SessionsClient sessionsClient;
-    private final SessionName sessionName;
-    public DialogflowService() throws IOException {
-        this.sessionName = SessionName.of("", "");
+    private SessionName sessionName;
+    public DialogflowService() throws FileNotFoundException, IOException {
+        //this.sessionName = SessionName.of("", "");
 
         // Load credentials from the JSON key file
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Subhi\\Desktop\\NW\\Project\\ezPay\\backend\\src\\main\\resources\\clear-network-435019-e9-6532835b90b3.json"));
+        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Subhi\\Desktop\\NW\\Project\\ezPay\\backend\\src\\main\\resources\\ezpay-9ubu-ebd8de1f4887.json"));
 
         // Create SessionsSettings with credentials
         SessionsSettings sessionsSettings = SessionsSettings.newBuilder()
@@ -34,10 +35,19 @@ public class DialogflowService {
         // Initialize the Dialogflow client
         this.sessionsClient = SessionsClient.create(sessionsSettings);
     }
+    
+    public SessionName getSessionName() {
+    	return this.sessionName;
+    }
+    
+    public void setSessionName(String sessionId) {
+    	// Create a session name with the provided project ID and session ID
+    	if(this.sessionName == null)
+    		this.sessionName = SessionName.of("ezpay-9ubu", sessionId);
+    }
 
     public String detectIntentTexts(String text, String languageCode) throws ApiException {
-        // Create a session name with the provided project ID and session ID
-        //SessionName sessionName = SessionName.of("your-project-id", sessionId);
+        
 
         // Create text input
         TextInput textInput = TextInput.newBuilder().setText(text).setLanguageCode(languageCode).build();
