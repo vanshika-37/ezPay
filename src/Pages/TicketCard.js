@@ -43,7 +43,7 @@ export default function TicketCard(props) {
 
                         {/* Button to resolve or unresolve the ticket based on its current status */}
                         <Button
-                            variant={props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'success' : 'primary'}
+                            variant={props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'success' : 'warning'}
                             onClick={() => props.resolveHandler(props.ticket.ticketId, props.ticket.status)}
                         >
                             {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? 'Resolve' : 'Unresolve'}
