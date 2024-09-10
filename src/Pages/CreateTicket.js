@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Alert } from 'react-bootstrap';
+import { BASE_URL } from '../constants/app.constants';
 
 /**
  * A component for creating support tickets. It renders a modal where users can enter the issue description
@@ -59,7 +60,7 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
 
         try {
             // Send a POST request to the backend to create a new ticket
-            const response = await fetch('http://localhost:8090/api/support/create', {
+            const response = await fetch(BASE_URL + '/create', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

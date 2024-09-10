@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Header from "./Header.js";
 import { Container, Row, Col, Image } from "react-bootstrap";
+import { BASE_URL } from "../constants/app.constants.js";
 
 /**
     @author: Vanshika Sood
@@ -17,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     // Function to fetch the home page title from the API
     const fetchTitle = async () => {
-      const response = await fetch('http://localhost:8090/api/support/home');
+      const response = await fetch(BASE_URL + '/home');
       const data = await response.text();
       setTitle(data);
   };

@@ -13,11 +13,12 @@ import TicketCard from "./TicketCard";
 import "../styles/help.css";
 import CreateTicket from "./CreateTicket";
 import ChatPage from "./ChatPage";
+import { BASE_URL } from "../constants/app.constants";
 
 
 export default function Help() {
 
-    const base = "http://localhost:8090/api/support"; // Base URL for API requests
+    // const base = "http://localhost:8090/api/support"; // Base URL for API requests
     const userId = 5678; // Static user ID (can be dynamic in a real application)
 
     // State to store tickets raised by a separate user
@@ -29,7 +30,7 @@ export default function Help() {
 
     // API call to the backend to fetch tickets for the current user
     const getUserTickets = async() => {
-        let response = await fetch(base + `/gettick/user/${userId}`, {"method":"GET"});
+        let response = await fetch(BASE_URL + `/gettick/user/${userId}`, {"method":"GET"});
         let json = await response.json();
         setUserTickets(json);
     }
@@ -39,11 +40,11 @@ export default function Help() {
         let response;
         let json;
         if(status==="OPEN" || status==="PENDING"){
-            response = await fetch(base + `/resolveticket/${ticketId}`, {"method":"PUT"});
+            response = await fetch(BASE_URL + `/resolveticket/${ticketId}`, {"method":"PUT"});
             json = await response.json();
         }
         else if (status==="RESOLVED"){
-            response = await fetch(base + `/unresolveticket/${ticketId}`, {"method":"PUT"});
+            response = await fetch(BASE_URL + `/unresolveticket/${ticketId}`, {"method":"PUT"});
             json = await response.json();
         }
 
@@ -59,7 +60,7 @@ export default function Help() {
 
     // API call to the backend to delete a ticket by its ID
     const deleteTicket = async(ticketId) => {
-        let response = await fetch(base + `/delete/${ticketId}`, {"method": "DELETE"});
+        let response = await fetch(BASE_URL + `/delete/${ticketId}`, {"method": "DELETE"});
         let json = await response.json();
         handleDelete(ticketId);
         console.log("Response from Delete endpoint :", json);

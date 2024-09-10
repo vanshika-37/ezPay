@@ -6,20 +6,21 @@
 
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Modal } from 'react-bootstrap';
+import { BASE_URL } from '../constants/app.constants';
 import '../styles/ChatDialog.css';
 
-export default function ChatPage({isOpen, onClose, ticketId}) {
+export default function ChatPage({ isOpen, onClose, ticketId }) {
 
-    const base = "http://localhost:8090/api/support";
+    // const base = "http://localhost:8090/api/support";
     const [inputMessage, setInputMessage] = useState("");
     const [myMessages, setMyMessages] = useState([]);
     const chatContentRef = useRef(null);
 
     // API call to backend to get messages for a particular ticket of current user
     const getMessages = async (id) => {
-        let response = await fetch(base + `/getchat/${id}`, {"method": "GET"});
+        let response = await fetch(BASE_URL + `/getchat/${id}`, { "method": "GET" });
         let json = await response.json();
-        
+
         setMyMessages(json);
         scrollToBottom();
     }
@@ -31,8 +32,8 @@ export default function ChatPage({isOpen, onClose, ticketId}) {
 
     // Ensure scroll happens after messages update
     useEffect(() => {
-        scrollToBottom();  
-    }, [myMessages]);    
+        scrollToBottom();
+    }, [myMessages]);
 
     // send button is diabled if input is empty
     const isSendButtonDisabled = !inputMessage.trim();
@@ -46,7 +47,7 @@ export default function ChatPage({isOpen, onClose, ticketId}) {
     const handleKeyDown = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
             e.preventDefault(); // Prevent newline in textarea
-            sendMessage(); 
+            sendMessage();
         }
     };
 
@@ -64,47 +65,47 @@ export default function ChatPage({isOpen, onClose, ticketId}) {
 
         // Send user message to the backend
         try {
-            const response = await fetch(`http://localhost:8090/api/support/sendusermessage/${ticketId}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ "message": inputMessage }),
-        });
-        const responseData = await response.json();
+            const response = await fetch(BASE_URL + `/sendusermessage/${ticketId}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ "message": inputMessage }),
+            });
+            const responseData = await response.json();
 
-        // Update the state with the new user and bot messages
-        setMyMessages((prevMessages) => [...prevMessages, ...responseData]);
-        setInputMessage('');
+            // Update the state with the new user and bot messages
+            setMyMessages((prevMessages) => [...prevMessages, ...responseData]);
+            setInputMessage('');
 
-        scrollToBottom();
-        
+            scrollToBottom();
+
         } catch (error) {
             console.error('Error sending message:', error);
         }
     };
 
-  return (
-    <div>
-        <Modal show={isOpen} onHide={onClose}>
+    return (
+        <div>
+            <Modal show={isOpen} onHide={onClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Support Chat #{ticketId}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
 
                     {
-                        myMessages.length === 0 ? 
-                            <h6 style={{"textAlign":"center"}}>
+                        myMessages.length === 0 ?
+                            <h6 style={{ "textAlign": "center" }}>
                                 <i>No Messages Yet</i>
-                            </h6> 
-                        :
+                            </h6>
+                            :
                             <div className="chat-content" ref={chatContentRef}>
                                 {myMessages.map((msg, index) => (
                                     <div key={index} className={msg.sender === 'User' ? 'user-msg' : 'bot-msg'}>
                                         <span>{msg.message}</span>
                                     </div>
                                 ))}
-                            </div> 
+                            </div>
                     }
 
                     <div className="chat-input">
@@ -115,9 +116,9 @@ export default function ChatPage({isOpen, onClose, ticketId}) {
                             onKeyDown={handleKeyDown}
                             placeholder="Type a message..."
                         />
-                        <Button 
+                        <Button
                             onClick={sendMessage}
-                            style={{border:"none", width:"100px", height:"40px", textAlign:"cente"}}
+                            style={{ border: "none", width: "100px", height: "40px", textAlign: "cente" }}
                             variant={inputMessage.length == 0 ? 'secondary' : 'primary'}
                             disabled={isSendButtonDisabled}
                         >
@@ -125,7 +126,7 @@ export default function ChatPage({isOpen, onClose, ticketId}) {
                         </Button>
                     </div>
                 </Modal.Body>
-        </Modal>
-    </div>
-  )
+            </Modal>
+        </div>
+    )
 }

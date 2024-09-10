@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "./PageTemplate";
+import { BASE_URL } from "../constants/app.constants";
 
 /**
     @author: Vanshika Sood
@@ -17,7 +18,7 @@ export default function Profile() {
         const fetchTitle = async () => {
             try {
                 // Send a GET request to the API endpoint to retrieve the profile information.
-                const response = await fetch('http://localhost:8090/api/support/profile');
+                const response = await fetch(BASE_URL + '/profile');
                 // Convert the response to text format.
                 const data = await response.text();
                 // Update the 'title' state with the fetched data.

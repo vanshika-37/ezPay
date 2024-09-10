@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "./PageTemplate";
-
+import { BASE_URL } from "../constants/app.constants";
 /** 
     Balance Component is used to do fetch content for the balance page
     @author: Vanshika Sood
@@ -16,7 +16,7 @@ export default function Balance() {
     useEffect(() => {
         const fetchTitle = async () => {
             // Sending a GET request to the backend API to fetch the balance title.
-            const response = await fetch('http://localhost:8090/api/support/balance');
+            const response = await fetch( BASE_URL + '/balance');
             // Converting the response to text.
             const data = await response.text();
             // Updating the 'title' state with the fetched data.
