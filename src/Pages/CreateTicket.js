@@ -52,7 +52,7 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
         const newTicket = {
             userId: userId,
             issueDescription: issueDescription,
-            status: 'PENDING',
+            status: 'OPEN',
             dateCreated: new Date(),
             dateResolved: null,
         };
