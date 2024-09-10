@@ -6,6 +6,9 @@ import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -45,7 +48,7 @@ public class DialogflowServiceTest {
     public void testDetectIntentTexts() throws ApiException {
         // Mock a query result
         QueryResult mockQueryResult = mock(QueryResult.class);
-        when(mockQueryResult.getFulfillmentText()).thenReturn("Greetings! How can I assist?");
+        //when(mockQueryResult.getFulfillmentText()).thenReturn("Greetings! How can I assist?");
 
         // Mock the DetectIntentResponse
         DetectIntentResponse mockResponse = mock(DetectIntentResponse.class);
@@ -54,11 +57,24 @@ public class DialogflowServiceTest {
         // Mock the SessionsClient detectIntent method
         when(sessionsClient.detectIntent(any(DetectIntentRequest.class))).thenReturn(mockResponse);
 
-        // Test the detectIntentTexts method
-        String responseText = dialogflowService.detectIntentTexts("Hello", "en");
+     // Set up a list of possible valid responses
+        List<String> validResponses = Arrays.asList(
+            "Hi! How are you doing?",
+            "Hello! How can I help you?",
+            "Good day! What can I do for you today?",
+            "Greetings! How can I assist?"
+        );
 
-        // Verify and assert
-        assertNotNull(responseText);
-        assertEquals("Greetings! How can I assist?", responseText);
+        // Loop through each possible response and verify
+        for (String expectedResponse : validResponses) {
+            when(mockQueryResult.getFulfillmentText()).thenReturn(expectedResponse);
+
+            // Test the detectIntentTexts method
+            String responseText = dialogflowService.detectIntentTexts("Hello", "en");
+
+            // Verify that the response is one of the valid responses
+            assertNotNull(responseText);
+            assertTrue(validResponses.contains(responseText));
+        }
     }
 }

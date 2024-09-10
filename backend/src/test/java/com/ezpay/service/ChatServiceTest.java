@@ -38,9 +38,6 @@ public class ChatServiceTest {
     @Mock
     private TicketRepository ticketRepository;
 
-    @Mock
-    private ChatbotAPIClient chatbotAPIClient;
-
     private Ticket ticket;
     private ChatbotMessage userMessage;
 
