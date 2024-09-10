@@ -1,15 +1,18 @@
+/** 
+ *  Help Component calls the API endpoints for ticket related queries - fetching, resolving and deleting. 
+ *  It also calls the TicketCard component for rendering each ticket.
+ *  It display the chat modal if the user clicks on the show button.
+ *  It opens the add ticket modal when the create ticket button is clicked.
+    @author: Vaishnave JP
+    @since: 6th September 2024 
+**/
+
 import { useEffect, useState } from "react";
 import Header from "./Header";
 import TicketCard from "./TicketCard";
 import "../styles/help.css";
 import CreateTicket from "./CreateTicket";
-import ChatDialog from "./ChatDialog";
-
-/* 
-    @author: Vaishnave JP, Subhashree M
-    @since: 6th September 2024 
-    Help Component is used to do call the API endpoints for ticket related queries, like fetching, resolving and deleting. It also calls the TicketCard component for rendering each ticket
-*/
+import ChatPage from "./ChatPage";
 
 
 export default function Help() {
@@ -19,6 +22,10 @@ export default function Help() {
 
     // State to store tickets raised by a separate user
     const [userTickets, setUserTickets] = useState([]);
+    // state to open or close the modal chat
+    const [isOpen, setIsOpen] = useState(false);
+    // state to get the current selected ticket id
+    const [activeTicket, setActiveTicket] = useState(null);
 
     // API call to the backend to fetch tickets for the current user
     const getUserTickets = async() => {
@@ -28,12 +35,12 @@ export default function Help() {
     }
 
     // API call to the backend to resolve or unresolve a ticket based on its current status
-    const resolveTicket = async(ticketId,status) => {
+    const resolveTicket = async(ticketId, status) => {
         let response;
         let json;
-        if(status==="PENDING"){
-        response = await fetch(base + `/resolveticket/${ticketId}`, {"method":"PUT"});
-        json = await response.json();
+        if(status==="OPEN" || status==="PENDING"){
+            response = await fetch(base + `/resolveticket/${ticketId}`, {"method":"PUT"});
+            json = await response.json();
         }
         else if (status==="RESOLVED"){
             response = await fetch(base + `/unresolveticket/${ticketId}`, {"method":"PUT"});
@@ -66,7 +73,6 @@ export default function Help() {
     // useEffect to fetch tickets when the component is first rendered
     useEffect(() => {
         getUserTickets();
-        console.log(userTickets);
     }, [])
 
 
@@ -75,28 +81,16 @@ export default function Help() {
         setUserTickets(prevUserTickets => [newTicket, ...prevUserTickets]);
     };
 
-    const [isOpen, setIsOpen] = useState(false);
-    const [activeTicket, setActiveTicket] = useState(null);
-    const [messages, setMessages] = useState([]);
-
+    // open and close the chat modal
     const toggleChat = (id) => {
         setIsOpen(!isOpen);
         if(isOpen == false) {
             setActiveTicket(id);
-            getMessages(id);
         }
         else {
             setActiveTicket(null);
-            setMessages([]);
         }
-
     };
-
-    const getMessages = async (id) => {
-        let response = await fetch(base + `/getchat/${id}`, {"method": "GET"});
-        let json = await response.json();
-        setMessages(json);
-    }
 
     return(
         <div className="help-page">
@@ -124,7 +118,14 @@ export default function Help() {
                     }
                 </div>
             </div>
-            {isOpen && <ChatDialog onClose={toggleChat} ticketId={activeTicket} messages1={messages}/>}
+            {/* open the chat modal if selected */}
+            {isOpen && 
+                <ChatPage 
+                    isOpen={isOpen}
+                    onClose={toggleChat} 
+                    ticketId={activeTicket} 
+                />
+            }
         </div>
     )
 }

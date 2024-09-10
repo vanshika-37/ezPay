@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import Header from "./Header.js";
 import { Container, Row, Col, Image } from "react-bootstrap";
 
-/* 
+/**
     @author: Vanshika Sood
     @since: 6th September 2024 
     Home Component is used to do fetch content for the Home page
-*/
+**/
 
 export default function Home() {
 

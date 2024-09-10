@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import PageTemplate from "./PageTemplate";
 
-/* 
+/**
     @author: Vanshika Sood
     @since: 6th September 2024 
     Payment Component is used to do fetch content for the Payment page
-*/
+**/
 
 export default function Payment() {
     // Initialize 'title' state to store the data fetched from the API, starting as an empty string.

@@ -54,7 +54,7 @@ export default function TicketCard(props) {
                             variant="primary"
                             onClick={() => props.chatHandler(props.ticket.ticketId)}
                         >
-                            Show Chat
+                            Chat
                         </Button>
 
                         {/* Button to delete the ticket */}
@@ -62,7 +62,7 @@ export default function TicketCard(props) {
                             variant="danger"
                             onClick={() => props.deleteHandler(props.ticket.ticketId)}
                         >
-                            Delete Ticket
+                            Delete
                         </Button>
                     </div>
                 </Card.Body>

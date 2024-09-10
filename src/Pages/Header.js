@@ -2,11 +2,11 @@ import React from "react";
 import { Navbar, Nav, Container } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 
-/* 
+/**
     @author: Vanshika Sood
     @since: 6th September 2024 
     Header component to reuse in other pages. This consists of links to other pages.
-*/
+**/
 
 export default function Header() {
     return (
