@@ -27,7 +27,12 @@ import javax.json.stream.JsonParserFactory;
 
 @RestController
 @RequestMapping("/api/support")
-@CrossOrigin(origins = "http://localhost:3000", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, allowedHeaders = "*")
+@CrossOrigin(
+	    origins = {"http://localhost:3000", "https://dialogflow.cloud.google.com"}, 
+	    methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE}, 
+	    allowedHeaders = "*",
+	    allowCredentials = "true"  // Enable this if you are sending cookies or session data
+	)
 public class ChatController {
 	
 	@Autowired
@@ -43,8 +48,8 @@ public class ChatController {
     	String userRequest = message.getMessage();//jsonParser.parse(message).getAsJsonObject()).get("message").getAsString();
     	//JsonParserFactory factory = Json.createParserFactory();  
     	//JsonParser parser1 = factory.createParser(...);
-    	System.out.println(message);
-    	System.out.println(userRequest);
+    	//System.out.println(message);
+    	//System.out.println(userRequest);
 //    	JSONParser parser = new JSONParser();
 //    	JSONObject json = (JSONObject) parser.parse(stringToParse)
     			
