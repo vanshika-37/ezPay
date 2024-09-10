@@ -25,9 +25,6 @@ public class ChatService {
     @Autowired
     private TicketRepository ticketRepository;
 
-    @Autowired
-    private ChatbotAPIClient chatbotAPIClient;  // Integration with external chatbot API
-
     public ChatbotMessage sendMessage(Long ticketId, String message, String sender) throws Exception {
         // Get the support ticket
         Ticket ticket = ticketRepository.findById(ticketId)
