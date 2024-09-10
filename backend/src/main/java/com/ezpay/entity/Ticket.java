@@ -39,7 +39,7 @@ public class Ticket {
 	private Date dateResolved ;
  
 	@Column(name ="status")
-	private String status = "PENDING";
+	private String status = "OPEN";
 	
 	public Long getTicketId() {
 		return ticketId;
