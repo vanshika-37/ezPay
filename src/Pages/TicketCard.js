@@ -10,7 +10,7 @@ import Modal from 'react-bootstrap/Modal';
  * A modal is shown when the ticket card is clicked, displaying detailed ticket info.
  * 
  * 
- * @author: Vaishnave JP, Subhashree M
+ * @author: Vaishnave JP
  * @since: 6th September 2024
  */
 
@@ -18,6 +18,8 @@ import Modal from 'react-bootstrap/Modal';
 export default function TicketCard(props) {
     // State variable to control the visibility of the modal
     const [show, setShow] = useState(false);
+
+    console.log(props.ticket)
 
     /**
      * Toggles the modal visibility on card click.
@@ -74,7 +76,7 @@ export default function TicketCard(props) {
                     <Modal.Title>{props.ticket.issueDescription}</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <p>Created Date: {props.ticket.dateCreated}</p>  {/* Shows when the ticket was created */}
+                    <p><b>Created Date:</b> {props.ticket.dateCreated}</p>  {/* Shows when the ticket was created */}
                     {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>} {/* Shows when the ticket was resolved, if applicable */}
                     <p>Status: {props.ticket.status}</p>
                 </Modal.Body>

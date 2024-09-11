@@ -51,7 +51,7 @@ export default function Help() {
         // Update the state with the new ticket status to trigger rerender without manual page reload
         setUserTickets(prevUserTicket => 
             prevUserTicket.map(ticket => 
-                ticket.ticketId === ticketId ? {...ticket, status: json.status} : ticket
+                ticket.ticketId === ticketId ? {...ticket, status: json.status, dateResolved: json.dateResolved} : ticket
             )
         )
 
