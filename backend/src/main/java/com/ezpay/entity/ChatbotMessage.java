@@ -21,22 +21,17 @@ public class ChatbotMessage {
     @JoinColumn(name = "ticket_id", nullable = false)
     private Ticket ticket;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Sender sender;
+    private boolean sender;
 
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(nullable = false)
     private String message;
 
     @Column(nullable = false)
     private Date timestamp;
 
-    @Column(columnDefinition = "TEXT")
+    @Column
     private String context; // For chatbot conversation context
-
-    public enum Sender {
-        User, Chatbot
-    }
 
     // Getters and Setters
     public Long getMessageId() {
@@ -55,11 +50,11 @@ public class ChatbotMessage {
         this.ticket = supportTicket;
     }
 
-    public Sender getSender() {
+    public boolean getSender() {
         return sender;
     }
 
-    public void setSender(Sender sender) {
+    public void setSender(boolean sender) {
         this.sender = sender;
     }
 

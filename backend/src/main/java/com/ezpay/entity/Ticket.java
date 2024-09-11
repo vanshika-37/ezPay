@@ -1,6 +1,7 @@
 package com.ezpay.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import jakarta.persistence.Access;
 import jakarta.persistence.Column;
@@ -40,6 +41,10 @@ public class Ticket {
  
 	@Column(name ="status")
 	private String status = "OPEN";
+	
+	// One-to-Many relationship with ChatbotMessage
+	@OneToMany(mappedBy = "ticket", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<ChatbotMessage> messages;
 	
 	public Long getTicketId() {
 		return ticketId;
@@ -90,7 +95,13 @@ public class Ticket {
 	}
 	
 	
-	
+	public List<ChatbotMessage> getMessages() {
+		return messages;
+	}
+
+	public void setMessages(List<ChatbotMessage> messages) {
+		this.messages = messages;
+	}
 	
 
 }

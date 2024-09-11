@@ -30,7 +30,7 @@ public class DialogflowService {
         //this.sessionName = SessionName.of("", "");
 
         // Load credentials from the JSON key file
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Subhi\\Desktop\\NW\\Project\\ezPay\\backend\\src\\main\\resources\\ezpay-9ubu-ebd8de1f4887.json"));
+        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("D:\\Natwest\\bootcamp\\1ezpay\\ezPay_2\\ezPay\\backend\\src\\main\\resources\\ezpay-9ubu-ebd8de1f4887.json"));
 
         // Create SessionsSettings with credentials
         SessionsSettings sessionsSettings = SessionsSettings.newBuilder()

@@ -64,7 +64,7 @@ public class TicketService {
 	public Ticket unresolveTicket(Long ticketId) {
 		Ticket ticket = this.getTicket(ticketId);
 		ticket.setDateResolved(null);
-		ticket.setStatus("PENDING");
+		ticket.setStatus("OPEN");
 		return ticketRepository.save(ticket);
 		
 	}
