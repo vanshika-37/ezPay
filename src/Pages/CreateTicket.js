@@ -16,6 +16,9 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
     const [alertMessage, setAlertMessage] = useState(''); // Displays success or error messages
     const [validated, setValidated] = useState(false); // Controls form validation
 
+    // This defines the max length for the issue description
+    const maxDescriptionLength = 255;
+
     /**
      * Closes the modal and resets form validation and alert messages.
      */
@@ -120,14 +123,17 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
                         {/* Issue description input */}
                         <Form.Group className='mt-3'>
                             <Form.Label htmlFor="inputIssueDescription">Issue Description</Form.Label>
-                            <Form.Control
-                                type="text"
+                            <Form.Control as="textarea" rows={3}
                                 placeholder="Enter the issue description"
                                 id='inputIssueDescription'
                                 value={issueDescription}
                                 onChange={(e) => setIssueDescription(e.target.value)}
+                                maxLength={maxDescriptionLength}
                                 required
                             />
+                            <Form.Text className='text-muted'>
+                                {issueDescription.length}/{maxDescriptionLength} characters remaining
+                            </Form.Text>
                             <Form.Control.Feedback type="invalid">
                                 Please provide a valid description of the issue.
                             </Form.Control.Feedback>
