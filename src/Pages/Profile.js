@@ -7,7 +7,7 @@ import '../styles/Profile.css';
 
 /**
     @author: Vanshika Sood
-    @since: 6th September 2024 
+    @since: 12th September 2024 
     Profile Component is used to do fetch content for the Profile page
     It allows the user to update their User ID i.e. switch to a different user ID
 **/
