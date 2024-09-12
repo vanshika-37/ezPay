@@ -5,6 +5,14 @@ import { BASE_URL } from "../constants/app.constants.js";
 import Header from "./Header";
 import '../styles/Profile.css';
 
+/**
+    @author: Vanshika Sood
+    @since: 6th September 2024 
+    Profile Component is used to do fetch content for the Profile page
+    It allows the user to update their User ID i.e. switch to a different user ID
+**/
+
+
 export default function Profile() {
     const { userId, setUserId } = useContext(UserContext); // Get userId and setter from context
     const [newUserId, setNewUserId] = useState(userId);    // Local state for form input
