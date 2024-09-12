@@ -21,9 +21,9 @@ export default function Home() {
       const response = await fetch(BASE_URL + '/home');
       const data = await response.text();
       setTitle(data);
-  };
+    };
 
-  fetchTitle();
+    fetchTitle();
 
     // Setting static content for the home page
     setContent('A Secure and Efficient Digital Payment Solution');
@@ -40,7 +40,7 @@ export default function Home() {
             <Row className="align-items-center justify-content-center">
               {/* Column for the text, responsive layout */}
               <Col sm={12} md={7} className="text-center text-md-start">
-                <h1  className="display-3 fw-bold" >Welcome to, {title}</h1>
+                <h1 className="display-3 fw-bold" >Welcome to, {title}</h1>
                 <p className="lead fs-1 mt-4">{content}</p>
               </Col>
               <Col className="text-center">

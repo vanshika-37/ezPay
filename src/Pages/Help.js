@@ -7,7 +7,8 @@
     @since: 6th September 2024 
 **/
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
+import { UserContext } from "../context/UserContext";
 import Header from "./Header";
 import TicketCard from "./TicketCard";
 import "../styles/help.css";
@@ -18,9 +19,8 @@ import { BASE_URL } from "../constants/app.constants";
 
 export default function Help() {
 
-    // const base = "http://localhost:8090/api/support"; // Base URL for API requests
-    const userId = 5678; // Static user ID (can be dynamic in a real application)
-
+    // Get the userId from the context
+    const { userId } = useContext(UserContext);
     // State to store tickets raised by a separate user
     const [userTickets, setUserTickets] = useState([]);
     // state to open or close the modal chat
@@ -29,29 +29,29 @@ export default function Help() {
     const [activeTicket, setActiveTicket] = useState(null);
 
     // API call to the backend to fetch tickets for the current user
-    const getUserTickets = async() => {
-        let response = await fetch(BASE_URL + `/gettick/user/${userId}`, {"method":"GET"});
+    const getUserTickets = async () => {
+        let response = await fetch(BASE_URL + `/gettick/user/${userId}`, { "method": "GET" });
         let json = await response.json();
         setUserTickets(json);
     }
 
     // API call to the backend to resolve or unresolve a ticket based on its current status
-    const resolveTicket = async(ticketId, status) => {
+    const resolveTicket = async (ticketId, status) => {
         let response;
         let json;
-        if(status==="OPEN" || status==="PENDING"){
-            response = await fetch(BASE_URL + `/resolveticket/${ticketId}`, {"method":"PUT"});
+        if (status === "OPEN" || status === "PENDING") {
+            response = await fetch(BASE_URL + `/resolveticket/${ticketId}`, { "method": "PUT" });
             json = await response.json();
         }
-        else if (status==="RESOLVED"){
-            response = await fetch(BASE_URL + `/unresolveticket/${ticketId}`, {"method":"PUT"});
+        else if (status === "RESOLVED") {
+            response = await fetch(BASE_URL + `/unresolveticket/${ticketId}`, { "method": "PUT" });
             json = await response.json();
         }
 
         // Update the state with the new ticket status to trigger rerender without manual page reload
-        setUserTickets(prevUserTicket => 
-            prevUserTicket.map(ticket => 
-                ticket.ticketId === ticketId ? {...ticket, status: json.status, dateResolved: json.dateResolved} : ticket
+        setUserTickets(prevUserTicket =>
+            prevUserTicket.map(ticket =>
+                ticket.ticketId === ticketId ? { ...ticket, status: json.status, dateResolved: json.dateResolved } : ticket
             )
         )
 
@@ -59,8 +59,8 @@ export default function Help() {
     }
 
     // API call to the backend to delete a ticket by its ID
-    const deleteTicket = async(ticketId) => {
-        let response = await fetch(BASE_URL + `/delete/${ticketId}`, {"method": "DELETE"});
+    const deleteTicket = async (ticketId) => {
+        let response = await fetch(BASE_URL + `/delete/${ticketId}`, { "method": "DELETE" });
         let json = await response.json();
         handleDelete(ticketId);
         console.log("Response from Delete endpoint :", json);
@@ -74,7 +74,7 @@ export default function Help() {
     // useEffect to fetch tickets when the component is first rendered
     useEffect(() => {
         getUserTickets();
-    }, [])
+    }, []); 
 
 
     // Function to add a new ticket to the state
@@ -85,7 +85,7 @@ export default function Help() {
     // open and close the chat modal
     const toggleChat = (id) => {
         setIsOpen(!isOpen);
-        if(isOpen == false) {
+        if (isOpen == false) {
             setActiveTicket(id);
         }
         else {
@@ -93,7 +93,7 @@ export default function Help() {
         }
     };
 
-    return(
+    return (
         <div className="help-page">
             <div className="help-header">
                 <Header />
@@ -102,29 +102,29 @@ export default function Help() {
                 <div className="help-title">
                     <h2>TICKETS</h2>
                     {/* Button to create a new ticket */}
-                    <CreateTicket className="help-create-btn" userId={userId}  onTicketAdded={addNewTicket} />
+                    <CreateTicket className="help-create-btn" userId={userId} onTicketAdded={addNewTicket} />
                 </div>
 
                 {/* Ticket cards displaying each user ticket */}
                 <div className="help-cards">
                     {
                         userTickets.map((ticket, key) => {
-                            return <TicketCard 
-                                        ticket = {ticket} // Pass the ticket data
-                                        resolveHandler = {resolveTicket} // Pass resolve function
-                                        chatHandler = {toggleChat} // Pass resolve function
-                                        deleteHandler = {deleteTicket} // Pass delete function
-                                    />
+                            return <TicketCard
+                                ticket={ticket} // Pass the ticket data
+                                resolveHandler={resolveTicket} // Pass resolve function
+                                chatHandler={toggleChat} // Pass resolve function
+                                deleteHandler={deleteTicket} // Pass delete function
+                            />
                         })
                     }
                 </div>
             </div>
             {/* open the chat modal if selected */}
-            {isOpen && 
-                <ChatPage 
+            {isOpen &&
+                <ChatPage
                     isOpen={isOpen}
-                    onClose={toggleChat} 
-                    ticketId={activeTicket} 
+                    onClose={toggleChat}
+                    ticketId={activeTicket}
                 />
             }
         </div>
