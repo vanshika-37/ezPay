@@ -24,22 +24,28 @@ import org.springframework.stereotype.Service;
 @Service
 public class DialogflowService {
 
-    private final SessionsClient sessionsClient;
+    private SessionsClient sessionsClient;
     private SessionName sessionName;
-    public DialogflowService() throws FileNotFoundException, IOException {
-        //this.sessionName = SessionName.of("", "");
+    String status;
+    public DialogflowService() {
+        try {
+			// Load credentials from the JSON key file
+			GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Subhi\\Desktop\\NW\\Project\\ezPay\\backend\\src\\main\\resources\\ezpay-9ubu-ebd8de1f4887.json"));
 
-        // Load credentials from the JSON key file
-        GoogleCredentials credentials = GoogleCredentials.fromStream(new FileInputStream("C:\\Users\\Subhi\\Desktop\\NW\\Project\\ezPay\\backend\\src\\main\\resources\\ezpay-9ubu-ebd8de1f4887.json"));
-        ///backend/src/main/resources/ezpay-9ubu-ebd8de1f4887.json
+			// Create SessionsSettings with credentials
+			SessionsSettings sessionsSettings = SessionsSettings.newBuilder()
+			        .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
+			        .build();
 
-        // Create SessionsSettings with credentials
-        SessionsSettings sessionsSettings = SessionsSettings.newBuilder()
-                .setCredentialsProvider(FixedCredentialsProvider.create(credentials))
-                .build();
-
-        // Initialize the Dialogflow client
-        this.sessionsClient = SessionsClient.create(sessionsSettings);
+			// Initialize the Dialogflow client
+			this.sessionsClient = SessionsClient.create(sessionsSettings);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("You do not have valid Google API credentials!");
+			status = "You do not have valid Google API credentials!";
+			//if(this.sessionsClient == null) this.sessionsClient = null;
+		}
     }
     
     public SessionName getSessionName() {
@@ -55,19 +61,26 @@ public class DialogflowService {
     public String detectIntentTexts(String text, String languageCode) throws ApiException {
         
 
-        // Create text input
-        TextInput textInput = TextInput.newBuilder().setText(text).setLanguageCode(languageCode).build();
-        QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
+        QueryResult queryResult;
+		try {
+			// Create text input
+			TextInput textInput = TextInput.newBuilder().setText(text).setLanguageCode(languageCode).build();
+			QueryInput queryInput = QueryInput.newBuilder().setText(textInput).build();
 
-        // Build the request
-        DetectIntentRequest request = DetectIntentRequest.newBuilder()
-                .setSession(sessionName.toString())
-                .setQueryInput(queryInput)
-                .build();
+			// Build the request
+			DetectIntentRequest request = DetectIntentRequest.newBuilder()
+			        .setSession(sessionName.toString())
+			        .setQueryInput(queryInput)
+			        .build();
 
-        // Send request and get response
-        DetectIntentResponse response = sessionsClient.detectIntent(request);
-        QueryResult queryResult = response.getQueryResult();
+			// Send request and get response
+			DetectIntentResponse response = sessionsClient.detectIntent(request);
+			queryResult = response.getQueryResult();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return status + " This is a dummy bot response";
+		}
 
         // Return the response text
         return queryResult.getFulfillmentText();
