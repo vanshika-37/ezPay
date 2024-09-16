@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ezpay.entity.Ticket;
-import com.ezpay.repository.TicketRepository;
 import com.ezpay.service.TicketService;
 
 @RestController

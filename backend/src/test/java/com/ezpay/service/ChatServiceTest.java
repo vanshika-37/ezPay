@@ -57,7 +57,7 @@ public class ChatServiceTest {
         // Create a sample user message
         userMessage = new ChatbotMessage();
         userMessage.setTicket(ticket);
-        userMessage.setSender(ChatbotMessage.Sender.User);
+        userMessage.setSender(1);
         userMessage.setMessage("Test user message");
         userMessage.setTimestamp(new Date());
     }
@@ -77,7 +77,7 @@ public class ChatServiceTest {
         verify(ticketRepository, times(1)).findById(1L);
         verify(chatbotMessageRepository).saveAndFlush(argThat(message -> 
 	        message.getMessage().equals("Test user message") &&
-	        message.getSender().equals(ChatbotMessage.Sender.User)
+	        (message.getSender()==1)
         ));
 
 
