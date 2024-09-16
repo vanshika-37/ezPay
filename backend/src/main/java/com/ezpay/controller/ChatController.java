@@ -1,24 +1,14 @@
 package com.ezpay.controller;
 
-import org.apache.tomcat.util.json.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.ezpay.entity.ChatbotMessage;
 import com.ezpay.service.ChatService;
 import com.ezpay.service.DialogflowService;
-import com.fasterxml.jackson.core.JsonParser;
-import com.google.api.client.json.Json;
 
-import java.io.IOException;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
-import javax.json.stream.JsonParserFactory;
 
 /**
  * @author Subhashree M

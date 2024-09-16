@@ -33,8 +33,8 @@ public class ChatService {
         // Save user message
         ChatbotMessage userMessage = new ChatbotMessage();
         userMessage.setTicket(ticket);
-        if(sender.equals("User")) userMessage.setSender(ChatbotMessage.Sender.User);
-        else if(sender.equals("Chatbot")) userMessage.setSender(ChatbotMessage.Sender.Chatbot);
+        if(sender.equals("User")) userMessage.setSender(1);
+        else if(sender.equals("Chatbot")) userMessage.setSender(0);
         userMessage.setMessage(message);
         userMessage.setTimestamp(new Date());
         chatbotMessageRepository.saveAndFlush(userMessage);

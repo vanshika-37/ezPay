@@ -22,7 +22,7 @@ public class ChatbotMessage {
     private Ticket ticket;
 
     @Column(nullable = false)
-    private boolean sender;
+    private int sender;
 
     @Column(nullable = false)
     private String message;
@@ -50,11 +50,11 @@ public class ChatbotMessage {
         this.ticket = supportTicket;
     }
 
-    public boolean getSender() {
+    public int getSender() {
         return sender;
     }
 
-    public void setSender(boolean sender) {
+    public void setSender(int sender) {
         this.sender = sender;
     }
 

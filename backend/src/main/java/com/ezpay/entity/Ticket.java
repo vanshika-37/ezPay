@@ -95,13 +95,13 @@ public class Ticket {
 	}
 	
 	
-	public List<ChatbotMessage> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<ChatbotMessage> messages) {
-		this.messages = messages;
-	}
+//	public List<ChatbotMessage> getMessages() {
+//		return messages;
+//	}
+//
+//	public void setMessages(List<ChatbotMessage> messages) {
+//		this.messages = messages;
+//	}
 	
 
 }
