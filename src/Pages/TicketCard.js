@@ -34,7 +34,7 @@ export default function TicketCard(props) {
                         <Card.Title>
                             #{props.ticket.ticketId}
                         </Card.Title>
-                        <Card.Text>
+                        <Card.Text className='text-truncate'>
                             <h5>{props.ticket.issueDescription}</h5>
                             <p>Status: {props.ticket.status}</p>
                         </Card.Text>

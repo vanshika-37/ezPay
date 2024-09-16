@@ -53,3 +53,7 @@ textarea {
 .send-gray {
   background-color: #F1F0F0;
 }
+
+.modal-header {
+    align-items: start;
+}

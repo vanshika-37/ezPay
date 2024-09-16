@@ -161,7 +161,7 @@ export default function Help() {
                             {showDropdown && (
                                 <div style={{position: "absolute", border: "1px solid #ccc", backgroundColor: "white", zIndex: 1000, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", padding:"10px"}}>
                                     {filterOptions.map((option) => (
-                                        <div key={option} className="dropdown-item">
+                                        <div key={option} className="dropdown-item" style={{display:"flex"}}>
                                             {/* Checkbox for each option */}
                                             <input
                                                 type="checkbox"

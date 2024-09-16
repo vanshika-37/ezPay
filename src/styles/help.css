@@ -33,6 +33,7 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
 .help-cards {
     flex-grow: 1;
     background-color: #ecf3f8;
@@ -65,7 +66,7 @@
     color: white;
     width: 140px;
 }
-    
+
 .card {
     cursor: pointer;
     width: 20rem;
@@ -99,30 +100,47 @@
 .dropdown-item {
     display: flex;
     margin-bottom: 8px;
+    flex-grow: 1; 
 }
 
 .dropdown-item input {
     margin-right: 5px;
-    text-align: center;
+    margin-left:0px;
+    text-align: left;
 }
+
 @media only screen and (max-width: 600px) {
     .card {
         max-width: 16rem;
         font-size: 15px;
     }
 
-        .card-btns {
+    .card-btns {
         max-height: 2rem;
-    gap: 2px;
+        gap: 2px;
         font-size: 10px;
     }
 
     .help-title {
-    display: flex;
+        display: flex;
         flex-direction: column;
         text-align: center;
     }
-.dropdown-item {
-    font-size: 15px;
+
+    .dropdown-item {
+        font-size: 15px;
+    }
 }
+
+.modal-title {
+    max-width: 80%;
+    height: max-content;
+    overflow-wrap: break-word;
+}
+
+
+.card-text > h5{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
