@@ -93,20 +93,22 @@ export default function ChatPage({ isOpen, onClose, ticketId }) {
                 </Modal.Header>
                 <Modal.Body>
 
-                    {
-                        myMessages.length === 0 ?
-                            <h6 style={{ "textAlign": "center" }}>
-                                <i>No Messages Yet</i>
-                            </h6>
-                            :
+                    
                             <div className="chat-content" ref={chatContentRef}>
-                                {myMessages.map((msg, index) => (
-                                    <div key={index} className={msg.sender === 'User' ? 'user-msg' : 'bot-msg'}>
+                            {
+                                myMessages.length === 0 ?
+                                    <h6 style={{ "textAlign": "center" }}>
+                                        <i>No Messages Yet</i>
+                                    </h6>
+                            :
+                                <>{myMessages.map((msg, index) => (
+                                    <div key={index} className={msg.sender === 1 ? 'user-msg' : 'bot-msg'}>
                                         <span>{msg.message}</span>
                                     </div>
-                                ))}
+                                ))}</>
+                            }
                             </div>
-                    }
+                    
 
                     <div className="chat-input">
                         <textarea

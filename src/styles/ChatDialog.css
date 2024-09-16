@@ -1,12 +1,12 @@
 /*
-        @author: Subhashree M, Vaishnave JP
+    @author: Subhashree M, Vaishnave JP
     @since: 6th September 2024 
 */
 
   .chat-content {
     flex-grow: 1;
-    max-height: 500px;
-      overflow-y: scroll;
+    height: 500px;
+    overflow-y: scroll;
     margin-bottom: 10px;
     padding: 10px;
     border: 1px solid #ddd;
