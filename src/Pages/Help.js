@@ -15,6 +15,7 @@ import "../styles/help.css";
 import CreateTicket from "./CreateTicket";
 import ChatPage from "./ChatPage";
 import { BASE_URL } from "../constants/app.constants";
+import { Button } from "react-bootstrap";
 
 
 export default function Help() {
@@ -27,6 +28,11 @@ export default function Help() {
     const [isOpen, setIsOpen] = useState(false);
     // state to get the current selected ticket id
     const [activeTicket, setActiveTicket] = useState(null);
+
+    const [showDropdown, setShowDropdown] = useState(false);
+    const filterOptions = ['Resolved', 'Unresolved'];
+    const [selectedFilters, setSelectedFilters] = useState([]);
+    const [filteredData, setFilteredData] = useState(userTickets);
 
     // API call to the backend to fetch tickets for the current user
     const getUserTickets = async () => {
@@ -55,7 +61,7 @@ export default function Help() {
             )
         )
 
-        console.log("Response from Resolve endpoint :", json);
+        // console.log("Response from Resolve endpoint :", json);
     }
 
     // API call to the backend to delete a ticket by its ID
@@ -63,7 +69,7 @@ export default function Help() {
         let response = await fetch(BASE_URL + `/delete/${ticketId}`, { "method": "DELETE" });
         let json = await response.json();
         handleDelete(ticketId);
-        console.log("Response from Delete endpoint :", json);
+        // console.log("Response from Delete endpoint :", json);
     }
 
     // Function to filter out the deleted ticket from the state
@@ -93,6 +99,50 @@ export default function Help() {
         }
     };
 
+
+    // Toggle the dropdown visibility
+    const toggleDropdown = () => {
+        setShowDropdown(!showDropdown);
+    };
+
+
+    // Handle checkbox changes by updating the selectedFilters state to inclue or exclude the selected option
+    const handleCheckboxChange = (option) => {
+        setSelectedFilters((prev) =>
+        prev.includes(option)
+            ? prev.filter((item) => item !== option)
+            : [...prev, option]
+        );   
+    };
+
+    // Update filtered data whenever selectedFilters or userTickets changes
+    useEffect(() => {
+        const filterData = () => {
+            const newFilteredData = userTickets.filter((item) => {
+                    // If no filters are selected, return all tickets
+                    if (selectedFilters.length === 0) {
+                        return true;
+                    }
+
+                    // Filter based on the selected status filters ('Resolved' or 'Unresolved')
+                    if (selectedFilters.includes('Resolved') && item.status === 'RESOLVED') {
+                        return true;
+                    }
+
+                    if (selectedFilters.includes('Unresolved') && item.status === 'OPEN') {
+                        return true;
+                    }
+
+                    return false;
+                }
+            );
+            setFilteredData(newFilteredData);
+        };
+
+        filterData();
+    }, [selectedFilters, userTickets]); // Triggers whenever selectedFilters or userTickets changes
+
+
     return (
         <div className="help-page">
             <div className="help-header">
@@ -101,14 +151,38 @@ export default function Help() {
             <div className="help-body">
                 <div className="help-title">
                     <h2>TICKETS</h2>
-                    {/* Button to create a new ticket */}
-                    <CreateTicket className="help-create-btn" userId={userId} onTicketAdded={addNewTicket} />
+
+                    {/* Dropdown to filter tickets */}
+                    <div style={{display: "flex", gap: "10px", justifyContent: "center"}}>
+                        <div className="help-filter-add" style={{position: "relative", display: "inline-block"}}>
+                            <Button variant="primary" className="dropdown-btn" onClick={toggleDropdown}>
+                                Filter Tickets
+                            </Button>
+                            {showDropdown && (
+                                <div style={{position: "absolute", border: "1px solid #ccc", backgroundColor: "white", zIndex: 1000, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", padding:"10px"}}>
+                                    {filterOptions.map((option) => (
+                                        <div key={option} className="dropdown-item">
+                                            {/* Checkbox for each option */}
+                                            <input
+                                                type="checkbox"
+                                                checked={selectedFilters.includes(option)}
+                                                onChange={() => handleCheckboxChange(option)}
+                                            />
+                                            <label>{option}</label>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                        {/* Button to create a new ticket */}
+                        <CreateTicket className="help-create-btn" userId={userId} onTicketAdded={addNewTicket} />
+                    </div>
                 </div>
 
                 {/* Ticket cards displaying each user ticket */}
                 <div className="help-cards">
                     {
-                        userTickets.map((ticket, key) => {
+                        filteredData.map((ticket, key) => {
                             return <TicketCard
                                 ticket={ticket} // Pass the ticket data
                                 resolveHandler={resolveTicket} // Pass resolve function

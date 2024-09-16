@@ -92,7 +92,7 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
     return (
         <>
             {/* Button to open the modal */}
-            <Button variant="primary" onClick={handleShow} className='create-ticket-btn'>
+            <Button variant="primary" onClick={handleShow} style={{height: "max-content"}}>
                 Create Ticket
             </Button>
 

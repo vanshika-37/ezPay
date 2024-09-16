@@ -19,8 +19,6 @@ export default function TicketCard(props) {
     // State variable to control the visibility of the modal
     const [show, setShow] = useState(false);
 
-    console.log(props.ticket)
-
     /**
      * Toggles the modal visibility on card click.
      */
@@ -77,8 +75,8 @@ export default function TicketCard(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <p><b>Created Date:</b> {props.ticket.dateCreated}</p>  {/* Shows when the ticket was created */}
-                    {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? null : <p>Resolved Date: {props.ticket.dateResolved}</p>} {/* Shows when the ticket was resolved, if applicable */}
-                    <p>Status: {props.ticket.status}</p>
+                    {props.ticket.status === 'OPEN' || props.ticket.status === 'PENDING' ? null : <p><b>Resolved Date:</b> {props.ticket.dateResolved}</p>} {/* Shows when the ticket was resolved, if applicable */}
+                    <p><b>Status:</b> {props.ticket.status}</p>
                 </Modal.Body>
             </Modal>
         </div>
