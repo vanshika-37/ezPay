@@ -161,7 +161,7 @@ export default function Help() {
                             {showDropdown && (
                                 <div style={{position: "absolute", border: "1px solid #ccc", backgroundColor: "white", zIndex: 1000, boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)", padding:"10px"}}>
                                     {filterOptions.map((option) => (
-                                        <div key={option} className="dropdown-item" style={{display:"flex"}}>
+                                        <div key={option} className="dropdown-item" style={{display: "flex", alignItems: "center"}}>
                                             {/* Checkbox for each option */}
                                             <input
                                                 type="checkbox"
@@ -182,14 +182,19 @@ export default function Help() {
                 {/* Ticket cards displaying each user ticket */}
                 <div className="help-cards">
                     {
-                        filteredData.map((ticket, key) => {
-                            return <TicketCard
-                                ticket={ticket} // Pass the ticket data
-                                resolveHandler={resolveTicket} // Pass resolve function
-                                chatHandler={toggleChat} // Pass resolve function
-                                deleteHandler={deleteTicket} // Pass delete function
-                            />
-                        })
+                        // If no filtered data, display 'No Tickets Found'
+                        filteredData.length === 0 
+                        ? 
+                            <p>No Tickets Found</p> 
+                        :
+                            filteredData.map((ticket, key) => {
+                                return <TicketCard
+                                    ticket={ticket} // Pass the ticket data
+                                    resolveHandler={resolveTicket} // Pass resolve function
+                                    chatHandler={toggleChat} // Pass resolve function
+                                    deleteHandler={deleteTicket} // Pass delete function
+                                />
+                            })
                     }
                 </div>
             </div>
