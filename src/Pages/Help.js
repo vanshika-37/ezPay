@@ -185,9 +185,9 @@ export default function Help() {
                         // If no filtered data, display 'No Tickets Found'
                         filteredData.length === 0 
                         ? 
-                            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center"}}>
-                                <h3>No Tickets Found. </h3> 
-                                <h3>Create a new ticket to get started.</h3>
+                            <div style={{display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", textAlign: "center"}}>
+                                <h4>No Tickets Found. </h4> 
+                                <h4>Create a new ticket to get started.</h4>
                             </div>
                         :
                             filteredData.map((ticket, key) => {
