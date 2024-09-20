@@ -18,9 +18,17 @@ export default function Home() {
   useEffect(() => {
     // Function to fetch the home page title from the API
     const fetchTitle = async () => {
-      const response = await fetch(BASE_URL + '/home');
-      const data = await response.text();
-      setTitle(data);
+      try {
+        // Send a GET request to the API endpoint to retrieve the homepage information.
+        const response = await fetch(BASE_URL + '/home');
+        // Convert the response to text format.
+        const data = await response.text();
+        // Update the 'title' state with the fetched data.
+        setTitle(data);
+      } catch (error) {
+        console.error("Error fetching Home-page title:", error);
+      }
+
     };
 
     fetchTitle();

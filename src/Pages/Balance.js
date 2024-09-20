@@ -15,14 +15,18 @@ export default function Balance() {
     // Async function to fetch the title from the API.
     useEffect(() => {
         const fetchTitle = async () => {
-            // Sending a GET request to the backend API to fetch the balance title.
-            const response = await fetch( BASE_URL + '/balance');
-            // Converting the response to text.
-            const data = await response.text();
-            // Updating the 'title' state with the fetched data.
-            setTitle(data);
+            try {
+                // Sending a GET request to the backend API to fetch the balance title.
+                const response = await fetch(BASE_URL + '/balance');
+                // Converting the response to text.
+                const data = await response.text();
+                // Updating the 'title' state with the fetched data.
+                setTitle(data);
+            } catch (error) {
+                console.error("Error fetching balance title:", error);
+            }
         };
-    
+
         // Calling the fetchTitle function immediately when the component is mounted.
         fetchTitle();
     }, []); // Empty dependency array to run this effect only once (on page load).
