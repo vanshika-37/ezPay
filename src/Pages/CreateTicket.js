@@ -62,7 +62,7 @@ const CreateTicket = ({ userId, onTicketAdded }) => {
         };
 
         try {
-            // Send a POST request to the backend to create a new ticket
+            // Send a POST request to the backend API to create a new ticket, with the new ticket data as JSON 
             const response = await fetch(BASE_URL + '/create', {
                 method: 'POST',
                 headers: {
