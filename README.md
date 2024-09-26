@@ -123,7 +123,8 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 - **Get Ticket**: `/api/support/gettick/user/{userId}`
 - **Delete Ticket**: `/api/support/delete/{ticketId}`
 - **Resolve Ticket**: `/api/support/resolveticket/{ticketId}`
-- **Chatbot Integration**: `/api/chatbot/*`
+- **Get Chat**: `/api/support/getchat/{ticketId}*`
+- **Get Chat Response**: `/api/support/sendusermessage/{ticketId}*`
 
 ---
 
