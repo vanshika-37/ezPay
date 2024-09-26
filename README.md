@@ -15,7 +15,6 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
-- [License](#license)
 
 ---
 
