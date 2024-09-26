@@ -49,10 +49,12 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 1. **Clone the repository**:
    ```bash
    git clone http://hcltechgitlab1.career-shaper.com/Chandrasekhar_Baratam/ezpay_backend.git
+   
    ```
 2. **Navigate to the backend directory**:
    ```bash
    cd ezpay_backend
+   git checkout Squad-6
    ```
 3. **Install the required dependencies**:
    ```bash
@@ -81,6 +83,7 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 2. **Navigate to the frontend directory**:
    ```bash
    cd ezpay_frontend
+   git checkout Squad-6
    ```
 3. **Install dependencies**:
    ```bash
