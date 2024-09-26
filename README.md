@@ -17,7 +17,7 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 
 ---
 
-## Features (Use Case Studt-6 Support Ticket System with chatbot and Responsive User Interface)
+## Features (Use Case Study-6 Support Ticket System with Chatbot and Responsive User Interface)
 - **Support Ticket System with Chatbot**: 
    - Integrated support system where users can raise tickets for issues or inquiries.
    - **Chatbot** powered by **Dialogflow API** provides automated responses, assisting users with common queries. It also escalates to human support via an automated email when needed.
