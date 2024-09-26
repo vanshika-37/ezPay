@@ -99,8 +99,7 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 ## Configuration
 1. **Dialogflow Configuration**:  
    - Set up a **Dialogflow agent** and integrate the **API** keys in your backend for chatbot interaction.
-   - Configure the support ticket system to trigger an email to the support team when the chatbot escalates the issue.
-
+   - Add your api key to the resources directory and add path to code in dialogflow service.
 ---
 
 ## Running the Application
