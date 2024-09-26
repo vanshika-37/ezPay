@@ -14,7 +14,6 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 - [Configuration](#configuration)
 - [Running the Application](#running-the-application)
 - [API Endpoints](#api-endpoints)
-- [Contributing](#contributing)
 
 ---
 
@@ -49,11 +48,11 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/ezpay-backend.git
+   git clone http://hcltechgitlab1.career-shaper.com/Chandrasekhar_Baratam/ezpay_backend.git
    ```
 2. **Navigate to the backend directory**:
    ```bash
-   cd ezpay-backend
+   cd ezpay_backend
    ```
 3. **Install the required dependencies**:
    ```bash
@@ -77,11 +76,11 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 
 1. **Clone the frontend repository**:
    ```bash
-   git clone https://github.com/ezpay-frontend.git
+   git clone http://hcltechgitlab1.career-shaper.com/Chandrasekhar_Baratam/ezpay_frontend.git
    ```
 2. **Navigate to the frontend directory**:
    ```bash
-   cd ezpay-frontend
+   cd ezpay_frontend
    ```
 3. **Install dependencies**:
    ```bash
@@ -126,13 +125,4 @@ Ezpay is a comprehensive digital payment solution that allows users to securely 
 
 ---
 
-## Contributing
-
-1. Fork the repository.
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a pull request.
-
----
 
