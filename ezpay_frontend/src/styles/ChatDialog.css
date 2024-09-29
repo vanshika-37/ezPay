@@ -1,0 +1,59 @@
+/*
+    @author: Subhashree M, Vaishnave JP
+    @since: 6th September 2024 
+*/
+
+  .chat-content {
+    flex-grow: 1;
+    height: 50vh;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ddd;
+  }
+  
+  .user-msg {
+    text-align: left;
+      background-color: #007AFF;
+      color: white;
+    border-radius: 5px;
+    max-width: 290px;
+    width: fit-content;
+    margin: 10px;
+    margin-left: auto;
+    padding: 5px;
+  }
+  
+  .bot-msg {
+    text-align: left;
+    background-color: #F1F0F0;
+    border-radius: 5px;
+    max-width: 290px;
+    width: fit-content;
+    margin: 10px;
+    margin-right: auto;
+    padding: 5px;
+  }
+  
+  .chat-input {
+    flex-shrink: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0px;
+    gap: 10px;
+  }
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid gray;
+}
+
+.send-gray {
+  background-color: #F1F0F0;
+}
+
+.modal-header {
+    align-items: start;
+}
